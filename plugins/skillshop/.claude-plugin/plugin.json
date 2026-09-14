@@ -1,7 +1,7 @@
 {
   "name": "skillshop",
-  "version": "0.2.0",
-  "description": "Low-context engineering playbook marketplace: one automatic router shops a 157-playbook library and loads only relevant expert workflows.",
+  "version": "0.2.1",
+  "description": "Low-context engineering playbook marketplace with deterministic prompt routing and 157 on-demand expert workflows.",
   "author": {
     "name": "SkillShop maintainers"
   },
