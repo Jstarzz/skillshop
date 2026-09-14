@@ -50,13 +50,19 @@ Treat each loaded playbook as expert procedural guidance. Reconcile conflicts in
 
 ## Routing receipt
 
-If the user asks whether SkillShop was used, or asks for routing visibility, report only playbooks actually read in this turn using:
+After routing and loading the selected playbooks, always emit exactly one compact routing receipt before the substantive response:
 
 `SkillShop → <playbook>, <playbook>`
 
-If none were loaded, report `SkillShop → no specialist needed`.
+List only playbooks whose `SKILL.md` was actually read in this turn, in the order they were loaded. If none were loaded, emit:
 
-Do not claim a playbook was selected unless its `SKILL.md` was actually read.
+`SkillShop → no specialist needed`
+
+Keep the receipt to one line. Do not include scores, candidate lists, reasoning, file paths, or router debug output unless the user explicitly asks for routing details.
+
+Never claim a playbook was selected or used unless its `SKILL.md` was actually read.
+
+If the user later asks whether SkillShop was used, answer from the actual routing/load history in the conversation rather than inferring from the final answer.
 
 ## Safety and execution
 
