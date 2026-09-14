@@ -1,0 +1,23 @@
+{
+  "name": "parent-makes-payment",
+  "actor": "authenticated-parent",
+  "preconditions": [
+    "parent account exists",
+    "student is linked to parent",
+    "payable balance exists"
+  ],
+  "steps": [
+    {"action": "select_student", "target": "linked student"},
+    {"action": "select_fee", "target": "outstanding fee"},
+    {"action": "enter_amount", "value": "test amount"},
+    {"action": "review_payment"},
+    {"action": "submit_payment"}
+  ],
+  "assertions": [
+    "one payment is created",
+    "confirmation reference is visible",
+    "receipt is available",
+    "displayed balance reflects the completed transaction"
+  ],
+  "redactions": ["password", "card data", "session token"]
+}

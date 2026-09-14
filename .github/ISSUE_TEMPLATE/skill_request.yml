@@ -1,0 +1,29 @@
+name: Skill request
+about: Propose a new expert workflow or a meaningful gap in an existing one
+title: "[skill] "
+labels: [enhancement]
+body:
+  - type: input
+    id: capability
+    attributes:
+      label: Capability
+      placeholder: e.g. websocket-load-modeler
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What expert judgment is missing?
+      description: Describe the repeatable engineering decisions, not a persona.
+    validations:
+      required: true
+  - type: textarea
+    id: triggers
+    attributes:
+      label: Example tasks that should trigger it
+    validations:
+      required: true
+  - type: textarea
+    id: nontriggers
+    attributes:
+      label: Tasks that should NOT trigger it

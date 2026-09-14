@@ -1,0 +1,33 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "skillshop",
+  "description": "A large composable engineering skill toolbox for software teams and coding agents.",
+  "owner": {
+    "name": "SkillShop maintainers"
+  },
+  "plugins": [
+    {
+      "name": "skillshop",
+      "description": "Composable software-engineering Agent Skills covering architecture, QA, performance, reliability, security, frontend, backend, delivery and meta-routing.",
+      "version": "0.1.0",
+      "author": {
+        "name": "SkillShop maintainers"
+      },
+      "source": "./plugins/skillshop",
+      "category": "development",
+      "license": "MIT",
+      "keywords": [
+        "engineering",
+        "qa",
+        "testing",
+        "architecture",
+        "performance",
+        "security",
+        "reliability",
+        "ux",
+        "backend",
+        "frontend"
+      ]
+    }
+  ]
+}

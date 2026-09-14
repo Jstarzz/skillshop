@@ -1,0 +1,9 @@
+{
+  "name": "skillshop",
+  "version": "0.1.0",
+  "description": "Composable software-engineering Agent Skills covering architecture, QA, performance, reliability, security, frontend, backend, delivery and meta-routing.",
+  "author": {
+    "name": "SkillShop maintainers"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,39 @@
+name: example
+objective: ""
+authorized_target: ""
+environment: ""
+slos:
+  p95_ms: null
+  p99_ms: null
+  error_rate_pct: null
+traffic:
+  model: open # open | closed
+  scenarios: []
+profiles:
+  - name: baseline
+    duration: 60s
+  - name: expected-peak
+    duration: 300s
+stop_conditions:
+  target_error_rate_pct: 5
+  p99_ms: 5000
+  generator_saturation_pct: 85
+telemetry:
+  - target_cpu
+  - target_memory
+  - target_network
+  - db_pool
+  - db_latency
+  - queue_depth
+  - runtime_gc
+  - generator_cpu
+  - generator_network
+  - generator_backpressure
+result_fields:
+  - achieved_rps
+  - completed_requests
+  - error_rate
+  - p50_ms
+  - p95_ms
+  - p99_ms
+  - first_bottleneck

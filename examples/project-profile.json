@@ -1,0 +1,10 @@
+{
+  "kind": "web-saas",
+  "frontend": ["react", "typescript"],
+  "backend": ["aspnet-core"],
+  "data": ["postgresql"],
+  "domains": ["payments", "multi-tenant"],
+  "deployment": ["containers", "reverse-proxy"],
+  "testing": ["unit", "integration", "playwright"],
+  "constraints": ["production-readiness", "mobile-web"]
+}

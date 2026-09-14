@@ -1,0 +1,1731 @@
+{
+  "version": "0.1.0",
+  "skills": [
+    {
+      "name": "2am-debugger",
+      "category": "reliability",
+      "description": "Judge whether a tired on-call engineer can identify impact, recent changes and likely root cause quickly using documented tooling. Use when runbook review, on-call readiness, 2am debug.",
+      "triggers": [
+        "runbook review",
+        "on-call readiness",
+        "2am debug"
+      ],
+      "path": "plugins/skillshop/skills/2am-debugger/SKILL.md"
+    },
+    {
+      "name": "accessibility-tester",
+      "category": "qa",
+      "description": "Test keyboard, semantics, focus, forms, names, contrast, zoom and assistive-technology behavior as product functionality. Use when accessibility QA, keyboard testing, screen reader concerns.",
+      "triggers": [
+        "accessibility QA",
+        "keyboard testing",
+        "screen reader concerns"
+      ],
+      "path": "plugins/skillshop/skills/accessibility-tester/SKILL.md"
+    },
+    {
+      "name": "ai-feature-review",
+      "category": "architecture",
+      "description": "Review AI-powered product features for whether AI is necessary, failure containment, evaluation, latency, privacy and deterministic fallbacks. Use when AI feature, LLM integration, model in product.",
+      "triggers": [
+        "AI feature",
+        "LLM integration",
+        "model in product"
+      ],
+      "path": "plugins/skillshop/skills/ai-feature-review/SKILL.md"
+    },
+    {
+      "name": "api-boundary-review",
+      "category": "architecture",
+      "description": "Check service and module boundaries for coherent ownership, stable contracts and avoidable chatty coupling. Use when service split, module boundary, chatty internal API.",
+      "triggers": [
+        "service split",
+        "module boundary",
+        "chatty internal API"
+      ],
+      "path": "plugins/skillshop/skills/api-boundary-review/SKILL.md"
+    },
+    {
+      "name": "api-consumer",
+      "category": "architecture",
+      "description": "Review an API strictly from the integrating client's perspective for predictability, low round trips and usable contracts. Use when API DX, integration pain, public API review.",
+      "triggers": [
+        "API DX",
+        "integration pain",
+        "public API review"
+      ],
+      "path": "plugins/skillshop/skills/api-consumer/SKILL.md"
+    },
+    {
+      "name": "api-contract-tester",
+      "category": "qa",
+      "description": "Verify API status, schema, validation, errors, auth differences and backwards-compatibility behavior from a consumer perspective. Use when API test, contract test, schema drift.",
+      "triggers": [
+        "API test",
+        "contract test",
+        "schema drift"
+      ],
+      "path": "plugins/skillshop/skills/api-contract-tester/SKILL.md"
+    },
+    {
+      "name": "api-design-review",
+      "category": "backend",
+      "description": "Review API semantics, schemas, errors, pagination, validation, idempotency and compatibility from consumer goals backward. Use when API design, new endpoint, contract review.",
+      "triggers": [
+        "API design",
+        "new endpoint",
+        "contract review"
+      ],
+      "path": "plugins/skillshop/skills/api-design-review/SKILL.md"
+    },
+    {
+      "name": "api-versioning",
+      "category": "backend",
+      "description": "Design API evolution and deprecation so clients can migrate without surprise breakage or permanent version sprawl. Use when API versioning, breaking API change, deprecation.",
+      "triggers": [
+        "API versioning",
+        "breaking API change",
+        "deprecation"
+      ],
+      "path": "plugins/skillshop/skills/api-versioning/SKILL.md"
+    },
+    {
+      "name": "architecture-review",
+      "category": "architecture",
+      "description": "Challenge architecture for unnecessary complexity, coupling, failure modes, ownership ambiguity and operational burden. Use when architecture proposal, system design review, new services or queues.",
+      "triggers": [
+        "architecture proposal",
+        "system design review",
+        "new services or queues"
+      ],
+      "path": "plugins/skillshop/skills/architecture-review/SKILL.md"
+    },
+    {
+      "name": "auth-review",
+      "category": "security",
+      "description": "Review authentication, reset, MFA, lockout and federation flows for bypass, enumeration and credential weaknesses. Use when login change, password reset, OAuth OIDC.",
+      "triggers": [
+        "login change",
+        "password reset",
+        "OAuth OIDC"
+      ],
+      "path": "plugins/skillshop/skills/auth-review/SKILL.md"
+    },
+    {
+      "name": "authorization-review",
+      "category": "security",
+      "description": "Verify sensitive operations enforce server-side permissions at resource boundaries and resist horizontal and vertical escalation. Use when RBAC, IDOR, permission review.",
+      "triggers": [
+        "RBAC",
+        "IDOR",
+        "permission review"
+      ],
+      "path": "plugins/skillshop/skills/authorization-review/SKILL.md"
+    },
+    {
+      "name": "automated-test-designer",
+      "category": "qa",
+      "description": "Choose and design automated tests at the lowest reliable layer while minimizing brittleness, duplication and runtime. Use when add regression tests, test suite design, new behavior.",
+      "triggers": [
+        "add regression tests",
+        "test suite design",
+        "new behavior"
+      ],
+      "path": "plugins/skillshop/skills/automated-test-designer/SKILL.md"
+    },
+    {
+      "name": "background-jobs-review",
+      "category": "backend",
+      "description": "Review queued and scheduled jobs for identity, retries, leases, idempotency, cancellation and operability. Use when background job, cron worker, queue consumer.",
+      "triggers": [
+        "background job",
+        "cron worker",
+        "queue consumer"
+      ],
+      "path": "plugins/skillshop/skills/background-jobs-review/SKILL.md"
+    },
+    {
+      "name": "background-location-review",
+      "category": "frontend",
+      "description": "Review background location tracking for platform constraints, permission UX, battery, batching, offline buffering and recovery. Use when background GPS, location tracking, Android tracking.",
+      "triggers": [
+        "background GPS",
+        "location tracking",
+        "Android tracking"
+      ],
+      "path": "plugins/skillshop/skills/background-location-review/SKILL.md"
+    },
+    {
+      "name": "backup-restore-drill",
+      "category": "reliability",
+      "description": "Validate backups by restoring them into clean infrastructure and checking application-level integrity and recovery time. Use when restore drill, backup verification, disaster recovery.",
+      "triggers": [
+        "restore drill",
+        "backup verification",
+        "disaster recovery"
+      ],
+      "path": "plugins/skillshop/skills/backup-restore-drill/SKILL.md"
+    },
+    {
+      "name": "bad-network",
+      "category": "reliability",
+      "description": "Evaluate behavior under latency, jitter, bandwidth limits, connection resets, offline transitions and reconnects. Use when bad network, offline testing, mobile connectivity.",
+      "triggers": [
+        "bad network",
+        "offline testing",
+        "mobile connectivity"
+      ],
+      "path": "plugins/skillshop/skills/bad-network/SKILL.md"
+    },
+    {
+      "name": "benchmark-scientist",
+      "category": "performance",
+      "description": "Produce reproducible benchmarks with controlled variables, repeated measurements and defensible comparison rather than cherry-picked runs. Use when benchmark, compare implementations, performance claim.",
+      "triggers": [
+        "benchmark",
+        "compare implementations",
+        "performance claim"
+      ],
+      "path": "plugins/skillshop/skills/benchmark-scientist/SKILL.md"
+    },
+    {
+      "name": "brainstorming",
+      "category": "planning",
+      "description": "Compare materially different solution approaches, assumptions and tradeoffs before committing when the design space is open. Use when brainstorm, compare approaches, pressure-test direction.",
+      "triggers": [
+        "brainstorm",
+        "compare approaches",
+        "pressure-test direction"
+      ],
+      "path": "plugins/skillshop/skills/brainstorming/SKILL.md"
+    },
+    {
+      "name": "breakpoint-test",
+      "category": "performance",
+      "description": "Find the load knee where SLOs fail and identify the first saturated resource without confusing crash point with sustainable capacity. Use when breakpoint test, max capacity, scaling ceiling.",
+      "triggers": [
+        "breakpoint test",
+        "max capacity",
+        "scaling ceiling"
+      ],
+      "path": "plugins/skillshop/skills/breakpoint-test/SKILL.md"
+    },
+    {
+      "name": "browser-compatibility-review",
+      "category": "frontend",
+      "description": "Review web code for APIs, CSS and behaviors likely to differ across supported browsers before cross-browser execution. Use when browser compatibility, new web API, CSS support.",
+      "triggers": [
+        "browser compatibility",
+        "new web API",
+        "CSS support"
+      ],
+      "path": "plugins/skillshop/skills/browser-compatibility-review/SKILL.md"
+    },
+    {
+      "name": "bug-reproducer",
+      "category": "qa",
+      "description": "Turn vague or intermittent defect reports into minimal reliable reproductions with evidence and regression candidates. Use when sometimes bug, vague report, timing bug.",
+      "triggers": [
+        "sometimes bug",
+        "vague report",
+        "timing bug"
+      ],
+      "path": "plugins/skillshop/skills/bug-reproducer/SKILL.md"
+    },
+    {
+      "name": "build-vs-buy",
+      "category": "architecture",
+      "description": "Decide whether to build, adopt or outsource a capability using lifecycle cost, fit, lock-in and operational burden. Use when build vs buy, commodity capability, vendor evaluation.",
+      "triggers": [
+        "build vs buy",
+        "commodity capability",
+        "vendor evaluation"
+      ],
+      "path": "plugins/skillshop/skills/build-vs-buy/SKILL.md"
+    },
+    {
+      "name": "cache-skeptic",
+      "category": "reliability",
+      "description": "Challenge caches for necessity, invalidation correctness, stampedes, stale permissions and operational cost. Use when cache review, stale cache, cache proposed.",
+      "triggers": [
+        "cache review",
+        "stale cache",
+        "cache proposed"
+      ],
+      "path": "plugins/skillshop/skills/cache-skeptic/SKILL.md"
+    },
+    {
+      "name": "capacity-plan",
+      "category": "performance",
+      "description": "Convert measured sustainable performance into headroom, failure capacity, infrastructure sizing and scaling triggers. Use when capacity planning, node sizing, traffic growth.",
+      "triggers": [
+        "capacity planning",
+        "node sizing",
+        "traffic growth"
+      ],
+      "path": "plugins/skillshop/skills/capacity-plan/SKILL.md"
+    },
+    {
+      "name": "caveman",
+      "category": "architecture",
+      "description": "Solve the real problem with the fewest moving parts, dependencies and abstractions that satisfy current requirements. Use when overbuilt architecture, dependency for later, simplify system.",
+      "triggers": [
+        "overbuilt architecture",
+        "dependency for later",
+        "simplify system"
+      ],
+      "path": "plugins/skillshop/skills/caveman/SKILL.md"
+    },
+    {
+      "name": "cheap-ass",
+      "category": "architecture",
+      "description": "Minimize recurring infrastructure and vendor cost without violating required reliability or developer productivity. Use when reduce cloud bill, early-stage infra, cost review.",
+      "triggers": [
+        "reduce cloud bill",
+        "early-stage infra",
+        "cost review"
+      ],
+      "path": "plugins/skillshop/skills/cheap-ass/SKILL.md"
+    },
+    {
+      "name": "ci-pipeline-review",
+      "category": "reliability",
+      "description": "Review CI pipelines for trustworthy gating, caching, secret exposure, flaky behavior, artifact provenance and wasted runtime. Use when CI review, GitHub Actions, pipeline slow or flaky.",
+      "triggers": [
+        "CI review",
+        "GitHub Actions",
+        "pipeline slow or flaky"
+      ],
+      "path": "plugins/skillshop/skills/ci-pipeline-review/SKILL.md"
+    },
+    {
+      "name": "cli-ux-review",
+      "category": "frontend",
+      "description": "Review command-line interfaces for discoverability, composability, stable exit/output contracts and safe defaults. Use when CLI design, developer tool UX, command interface.",
+      "triggers": [
+        "CLI design",
+        "developer tool UX",
+        "command interface"
+      ],
+      "path": "plugins/skillshop/skills/cli-ux-review/SKILL.md"
+    },
+    {
+      "name": "code-quality-review",
+      "category": "delivery",
+      "description": "Review maintainability and clarity after correctness risks, focusing on future change cost rather than stylistic preference. Use when maintainability review, complex module, cleanup pass.",
+      "triggers": [
+        "maintainability review",
+        "complex module",
+        "cleanup pass"
+      ],
+      "path": "plugins/skillshop/skills/code-quality-review/SKILL.md"
+    },
+    {
+      "name": "codebase-orientation",
+      "category": "meta",
+      "description": "Teach a new developer or agent how a repository works quickly enough to make safe changes. Use when new contributor, unfamiliar codebase, handoff.",
+      "triggers": [
+        "new contributor",
+        "unfamiliar codebase",
+        "handoff"
+      ],
+      "path": "plugins/skillshop/skills/codebase-orientation/SKILL.md"
+    },
+    {
+      "name": "commit-and-pr",
+      "category": "delivery",
+      "description": "Turn a finished working tree into reviewable commits and a truthful pull request with verification evidence. Use when prepare PR, clean commits, PR description.",
+      "triggers": [
+        "prepare PR",
+        "clean commits",
+        "PR description"
+      ],
+      "path": "plugins/skillshop/skills/commit-and-pr/SKILL.md"
+    },
+    {
+      "name": "concurrency-review",
+      "category": "backend",
+      "description": "Review concurrent access for lost updates, double processing, deadlocks, shared-state races and contention. Use when concurrent writes, lost update, locking.",
+      "triggers": [
+        "concurrent writes",
+        "lost update",
+        "locking"
+      ],
+      "path": "plugins/skillshop/skills/concurrency-review/SKILL.md"
+    },
+    {
+      "name": "config-review",
+      "category": "reliability",
+      "description": "Review runtime configuration for unsafe defaults, drift, missing validation, secret confusion and production footguns. Use when environment variables, config drift, unsafe defaults.",
+      "triggers": [
+        "environment variables",
+        "config drift",
+        "unsafe defaults"
+      ],
+      "path": "plugins/skillshop/skills/config-review/SKILL.md"
+    },
+    {
+      "name": "container-review",
+      "category": "reliability",
+      "description": "Review container images and runtime configuration for reproducibility, size, permissions, signals, health and secret handling. Use when Dockerfile, container image, container runtime.",
+      "triggers": [
+        "Dockerfile",
+        "container image",
+        "container runtime"
+      ],
+      "path": "plugins/skillshop/skills/container-review/SKILL.md"
+    },
+    {
+      "name": "copy-review",
+      "category": "frontend",
+      "description": "Improve labels, helper text, confirmations and error messages for clarity, consistency and actionability. Use when UX copy, microcopy, error messages.",
+      "triggers": [
+        "UX copy",
+        "microcopy",
+        "error messages"
+      ],
+      "path": "plugins/skillshop/skills/copy-review/SKILL.md"
+    },
+    {
+      "name": "cross-browser-qa",
+      "category": "qa",
+      "description": "Verify critical behavior across supported browser engines and capture compatibility failures with exact browser evidence. Use when cross browser, Firefox Safari Chromium, browser-specific bug.",
+      "triggers": [
+        "cross browser",
+        "Firefox Safari Chromium",
+        "browser-specific bug"
+      ],
+      "path": "plugins/skillshop/skills/cross-browser-qa/SKILL.md"
+    },
+    {
+      "name": "data-integrity-tester",
+      "category": "qa",
+      "description": "Verify persisted data stays internally consistent across success, failure, retry, cancellation and migration paths. Use when data corruption, transaction QA, migration integrity.",
+      "triggers": [
+        "data corruption",
+        "transaction QA",
+        "migration integrity"
+      ],
+      "path": "plugins/skillshop/skills/data-integrity-tester/SKILL.md"
+    },
+    {
+      "name": "data-pipeline-review",
+      "category": "backend",
+      "description": "Review ingestion and ETL pipelines for schema drift, idempotency, late data, retries, backfills, lineage and observability. Use when ETL, data ingestion, pipeline backfill.",
+      "triggers": [
+        "ETL",
+        "data ingestion",
+        "pipeline backfill"
+      ],
+      "path": "plugins/skillshop/skills/data-pipeline-review/SKILL.md"
+    },
+    {
+      "name": "data-retention",
+      "category": "backend",
+      "description": "Design deletion, archival and retention across primary, cache, search, analytics, object storage and backups. Use when data retention, account deletion, archive policy.",
+      "triggers": [
+        "data retention",
+        "account deletion",
+        "archive policy"
+      ],
+      "path": "plugins/skillshop/skills/data-retention/SKILL.md"
+    },
+    {
+      "name": "database-change",
+      "category": "backend",
+      "description": "Design schema changes and deployment order to preserve data, compatibility and availability. Use when schema migration, add column index, database change.",
+      "triggers": [
+        "schema migration",
+        "add column index",
+        "database change"
+      ],
+      "path": "plugins/skillshop/skills/database-change/SKILL.md"
+    },
+    {
+      "name": "database-performance",
+      "category": "performance",
+      "description": "Diagnose database performance using query plans, indexes, locks, transactions, pools and workload evidence. Use when slow database, query plan, DB bottleneck.",
+      "triggers": [
+        "slow database",
+        "query plan",
+        "DB bottleneck"
+      ],
+      "path": "plugins/skillshop/skills/database-performance/SKILL.md"
+    },
+    {
+      "name": "decision-record",
+      "category": "planning",
+      "description": "Capture context, drivers, options, decision, consequences and revisit triggers in a durable engineering decision record. Use when architecture choice, ADR, tradeoff worth preserving.",
+      "triggers": [
+        "architecture choice",
+        "ADR",
+        "tradeoff worth preserving"
+      ],
+      "path": "plugins/skillshop/skills/decision-record/SKILL.md"
+    },
+    {
+      "name": "dependency-failure",
+      "category": "reliability",
+      "description": "Review and test behavior when downstream services become slow, malformed, partially available or completely unavailable. Use when third-party outage, downstream failure, dependency resilience.",
+      "triggers": [
+        "third-party outage",
+        "downstream failure",
+        "dependency resilience"
+      ],
+      "path": "plugins/skillshop/skills/dependency-failure/SKILL.md"
+    },
+    {
+      "name": "dependency-hater",
+      "category": "architecture",
+      "description": "Challenge dependencies whose value does not justify supply-chain, upgrade, bundle or operational cost. Use when too many dependencies, large package for small feature, dependency audit.",
+      "triggers": [
+        "too many dependencies",
+        "large package for small feature",
+        "dependency audit"
+      ],
+      "path": "plugins/skillshop/skills/dependency-hater/SKILL.md"
+    },
+    {
+      "name": "dependency-security",
+      "category": "security",
+      "description": "Review dependency and supply-chain risk, advisories, provenance, update strategy and unnecessary exposure. Use when dependency CVE, supply chain, package security.",
+      "triggers": [
+        "dependency CVE",
+        "supply chain",
+        "package security"
+      ],
+      "path": "plugins/skillshop/skills/dependency-security/SKILL.md"
+    },
+    {
+      "name": "dependency-upgrade",
+      "category": "delivery",
+      "description": "Upgrade dependencies with controlled scope, release-note awareness, compatibility testing and rollback clarity. Use when dependency bump, framework upgrade, security update.",
+      "triggers": [
+        "dependency bump",
+        "framework upgrade",
+        "security update"
+      ],
+      "path": "plugins/skillshop/skills/dependency-upgrade/SKILL.md"
+    },
+    {
+      "name": "deployment-review",
+      "category": "reliability",
+      "description": "Review deployment flow for artifact immutability, environment promotion, migrations, health gates, rollback and drift. Use when deployment pipeline, staging to production, deploy review.",
+      "triggers": [
+        "deployment pipeline",
+        "staging to production",
+        "deploy review"
+      ],
+      "path": "plugins/skillshop/skills/deployment-review/SKILL.md"
+    },
+    {
+      "name": "design-system-review",
+      "category": "frontend",
+      "description": "Assess whether components, variants and tokens form a coherent reusable system rather than near-duplicate wrappers. Use when design system, component library, shadcn sprawl.",
+      "triggers": [
+        "design system",
+        "component library",
+        "shadcn sprawl"
+      ],
+      "path": "plugins/skillshop/skills/design-system-review/SKILL.md"
+    },
+    {
+      "name": "distributed-systems-review",
+      "category": "architecture",
+      "description": "Review distributed designs for ownership, consistency, retries, idempotency, clocks, partitions and partial failure. Use when distributed workers, message queue, consistency guarantees.",
+      "triggers": [
+        "distributed workers",
+        "message queue",
+        "consistency guarantees"
+      ],
+      "path": "plugins/skillshop/skills/distributed-systems-review/SKILL.md"
+    },
+    {
+      "name": "docker-compose-review",
+      "category": "reliability",
+      "description": "Review Compose stacks for dependency readiness, durable state, networks, volumes, health, local-prod drift and operability. Use when Docker Compose, local stack, compose production.",
+      "triggers": [
+        "Docker Compose",
+        "local stack",
+        "compose production"
+      ],
+      "path": "plugins/skillshop/skills/docker-compose-review/SKILL.md"
+    },
+    {
+      "name": "documentation-sync",
+      "category": "delivery",
+      "description": "Update developer and operator documentation to match actual changed behavior, configuration, contracts and commands. Use when docs stale, API/config changed, setup changed.",
+      "triggers": [
+        "docs stale",
+        "API/config changed",
+        "setup changed"
+      ],
+      "path": "plugins/skillshop/skills/documentation-sync/SKILL.md"
+    },
+    {
+      "name": "edge-case-goblin",
+      "category": "qa",
+      "description": "Generate nasty but plausible input, state, timing, concurrency and permission combinations that happy-path tests miss. Use when edge cases, fuzz-like QA, boundary testing.",
+      "triggers": [
+        "edge cases",
+        "fuzz-like QA",
+        "boundary testing"
+      ],
+      "path": "plugins/skillshop/skills/edge-case-goblin/SKILL.md"
+    },
+    {
+      "name": "empty-state-review",
+      "category": "frontend",
+      "description": "Design first-use, no-results and zero-data states that explain context and offer the next meaningful action without decorative filler. Use when empty state, no results, first-use UI.",
+      "triggers": [
+        "empty state",
+        "no results",
+        "first-use UI"
+      ],
+      "path": "plugins/skillshop/skills/empty-state-review/SKILL.md"
+    },
+    {
+      "name": "error-state-review",
+      "category": "frontend",
+      "description": "Review how UI failure states explain what happened, preserve work and provide safe recovery without false success. Use when error state, API failure UI, retry UX.",
+      "triggers": [
+        "error state",
+        "API failure UI",
+        "retry UX"
+      ],
+      "path": "plugins/skillshop/skills/error-state-review/SKILL.md"
+    },
+    {
+      "name": "event-schema-review",
+      "category": "backend",
+      "description": "Review event and message schemas for ownership, versioning, idempotency, ordering and consumer compatibility. Use when event schema, message contract, event bus.",
+      "triggers": [
+        "event schema",
+        "message contract",
+        "event bus"
+      ],
+      "path": "plugins/skillshop/skills/event-schema-review/SKILL.md"
+    },
+    {
+      "name": "failure-injector",
+      "category": "reliability",
+      "description": "Inject bounded failures to verify timeouts, retries, degradation, recovery and state integrity rather than trusting design claims. Use when chaos test, failover test, dependency failure injection.",
+      "triggers": [
+        "chaos test",
+        "failover test",
+        "dependency failure injection"
+      ],
+      "path": "plugins/skillshop/skills/failure-injector/SKILL.md"
+    },
+    {
+      "name": "feature-flag-review",
+      "category": "backend",
+      "description": "Review feature flags for ownership, targeting, rollout, rollback, test matrix, interactions and cleanup. Use when feature flag, gradual rollout, flag debt.",
+      "triggers": [
+        "feature flag",
+        "gradual rollout",
+        "flag debt"
+      ],
+      "path": "plugins/skillshop/skills/feature-flag-review/SKILL.md"
+    },
+    {
+      "name": "fix-bug",
+      "category": "delivery",
+      "description": "Reproduce a defect, isolate root cause, add regression coverage and make the smallest responsible fix. Use when bug report, failing behavior, runtime defect.",
+      "triggers": [
+        "bug report",
+        "failing behavior",
+        "runtime defect"
+      ],
+      "path": "plugins/skillshop/skills/fix-bug/SKILL.md"
+    },
+    {
+      "name": "form-ux",
+      "category": "frontend",
+      "description": "Make forms understandable, fast, recoverable and accessible while reducing unnecessary input and validation friction. Use when form UX, checkout form, signup form.",
+      "triggers": [
+        "form UX",
+        "checkout form",
+        "signup form"
+      ],
+      "path": "plugins/skillshop/skills/form-ux/SKILL.md"
+    },
+    {
+      "name": "frontend-performance",
+      "category": "performance",
+      "description": "Improve user-visible frontend responsiveness by measuring network, bundle, main-thread, rendering and interaction costs on representative devices. Use when slow frontend, bundle size, janky UI.",
+      "triggers": [
+        "slow frontend",
+        "bundle size",
+        "janky UI"
+      ],
+      "path": "plugins/skillshop/skills/frontend-performance/SKILL.md"
+    },
+    {
+      "name": "frontend-slop-obliterator",
+      "category": "frontend",
+      "description": "Remove generic AI-generated UI slop and replace it with deliberate product-specific hierarchy, density, components and iconography. Use when AI slop UI, too many cards, generic dashboard.",
+      "triggers": [
+        "AI slop UI",
+        "too many cards",
+        "generic dashboard"
+      ],
+      "path": "plugins/skillshop/skills/frontend-slop-obliterator/SKILL.md"
+    },
+    {
+      "name": "future-proof",
+      "category": "architecture",
+      "description": "Preserve extension points only where future change is credible, expensive to retrofit and cheap to accommodate now. Use when known roadmap growth, hard-to-migrate boundary, counterweight to caveman.",
+      "triggers": [
+        "known roadmap growth",
+        "hard-to-migrate boundary",
+        "counterweight to caveman"
+      ],
+      "path": "plugins/skillshop/skills/future-proof/SKILL.md"
+    },
+    {
+      "name": "generator-sanity",
+      "category": "performance",
+      "description": "Prove the load generator and network are not the bottleneck before attributing a throughput ceiling to the system under test. Use when load generator bottleneck, RPS plateau, network ceiling.",
+      "triggers": [
+        "load generator bottleneck",
+        "RPS plateau",
+        "network ceiling"
+      ],
+      "path": "plugins/skillshop/skills/generator-sanity/SKILL.md"
+    },
+    {
+      "name": "git-conflict-resolution",
+      "category": "delivery",
+      "description": "Resolve merge and rebase conflicts semantically by reconstructing both sides' intended behavior. Use when merge conflict, rebase conflict, branch integration.",
+      "triggers": [
+        "merge conflict",
+        "rebase conflict",
+        "branch integration"
+      ],
+      "path": "plugins/skillshop/skills/git-conflict-resolution/SKILL.md"
+    },
+    {
+      "name": "grandma",
+      "category": "frontend",
+      "description": "Evaluate whether a nontechnical first-time user can understand and complete the primary task using only visible cues. Use when usability review, first-time user, confusing UI.",
+      "triggers": [
+        "usability review",
+        "first-time user",
+        "confusing UI"
+      ],
+      "path": "plugins/skillshop/skills/grandma/SKILL.md"
+    },
+    {
+      "name": "handoff",
+      "category": "meta",
+      "description": "Produce a dense continuation artifact containing state, decisions, evidence, blockers and next actions. Use when switch developer or agent, pause work, continuation summary.",
+      "triggers": [
+        "switch developer or agent",
+        "pause work",
+        "continuation summary"
+      ],
+      "path": "plugins/skillshop/skills/handoff/SKILL.md"
+    },
+    {
+      "name": "health-check-review",
+      "category": "reliability",
+      "description": "Ensure liveness, readiness and startup probes represent actionable process state without causing cascades. Use when health check, Kubernetes probe, readiness issues.",
+      "triggers": [
+        "health check",
+        "Kubernetes probe",
+        "readiness issues"
+      ],
+      "path": "plugins/skillshop/skills/health-check-review/SKILL.md"
+    },
+    {
+      "name": "hotfix",
+      "category": "delivery",
+      "description": "Repair an urgent production defect with the smallest blast radius, rollback readiness and explicit follow-up debt. Use when production hotfix, urgent incident fix.",
+      "triggers": [
+        "production hotfix",
+        "urgent incident fix"
+      ],
+      "path": "plugins/skillshop/skills/hotfix/SKILL.md"
+    },
+    {
+      "name": "idempotency-review",
+      "category": "backend",
+      "description": "Ensure retried or duplicated commands do not create duplicate side effects or corrupt state. Use when idempotency, duplicate request, at-least-once.",
+      "triggers": [
+        "idempotency",
+        "duplicate request",
+        "at-least-once"
+      ],
+      "path": "plugins/skillshop/skills/idempotency-review/SKILL.md"
+    },
+    {
+      "name": "implement-feature",
+      "category": "delivery",
+      "description": "Implement a defined feature as the smallest coherent vertical slice while preserving project conventions and proving behavior. Use when build feature, acceptance criteria exist, production code change.",
+      "triggers": [
+        "build feature",
+        "acceptance criteria exist",
+        "production code change"
+      ],
+      "path": "plugins/skillshop/skills/implement-feature/SKILL.md"
+    },
+    {
+      "name": "incident-commander",
+      "category": "reliability",
+      "description": "Coordinate an active incident around impact reduction, reversible mitigation, evidence preservation, communication and recovery criteria. Use when production incident, outage, severity response.",
+      "triggers": [
+        "production incident",
+        "outage",
+        "severity response"
+      ],
+      "path": "plugins/skillshop/skills/incident-commander/SKILL.md"
+    },
+    {
+      "name": "information-architecture",
+      "category": "frontend",
+      "description": "Organize navigation and content around user tasks and domain concepts so features are discoverable without memorizing the system. Use when navigation redesign, feature sprawl, findability.",
+      "triggers": [
+        "navigation redesign",
+        "feature sprawl",
+        "findability"
+      ],
+      "path": "plugins/skillshop/skills/information-architecture/SKILL.md"
+    },
+    {
+      "name": "input-validation-review",
+      "category": "security",
+      "description": "Review untrusted input validation, canonicalization, limits and dangerous sinks at real trust boundaries. Use when input validation, injection, parser security.",
+      "triggers": [
+        "input validation",
+        "injection",
+        "parser security"
+      ],
+      "path": "plugins/skillshop/skills/input-validation-review/SKILL.md"
+    },
+    {
+      "name": "intern-test",
+      "category": "meta",
+      "description": "Check whether a competent new developer can build, run, test and modify the project without tribal knowledge. Use when onboarding review, bus factor, README setup.",
+      "triggers": [
+        "onboarding review",
+        "bus factor",
+        "README setup"
+      ],
+      "path": "plugins/skillshop/skills/intern-test/SKILL.md"
+    },
+    {
+      "name": "journey-compiler",
+      "category": "qa",
+      "description": "Compile a semantic journey into manual cases, browser E2E, API sequences and load scenarios without brittle coordinate coupling. Use when recording to tests, compile journey, Playwright API load.",
+      "triggers": [
+        "recording to tests",
+        "compile journey",
+        "Playwright API load"
+      ],
+      "path": "plugins/skillshop/skills/journey-compiler/SKILL.md"
+    },
+    {
+      "name": "journey-recorder",
+      "category": "qa",
+      "description": "Record human or agent interactions as structured semantic journeys with browser, network and assertion evidence. Use when record workflow, capture QA session, turn use into tests.",
+      "triggers": [
+        "record workflow",
+        "capture QA session",
+        "turn use into tests"
+      ],
+      "path": "plugins/skillshop/skills/journey-recorder/SKILL.md"
+    },
+    {
+      "name": "kubernetes-review",
+      "category": "reliability",
+      "description": "Review Kubernetes workloads for resource requests, probes, rollout, disruption, storage, networking and failure semantics. Use when Kubernetes, k3s, deployment manifest.",
+      "triggers": [
+        "Kubernetes",
+        "k3s",
+        "deployment manifest"
+      ],
+      "path": "plugins/skillshop/skills/kubernetes-review/SKILL.md"
+    },
+    {
+      "name": "legacy-survivor",
+      "category": "architecture",
+      "description": "Change old fragile systems safely using characterization, seams and incremental replacement instead of reckless rewrites. Use when legacy code, old framework, fragile subsystem.",
+      "triggers": [
+        "legacy code",
+        "old framework",
+        "fragile subsystem"
+      ],
+      "path": "plugins/skillshop/skills/legacy-survivor/SKILL.md"
+    },
+    {
+      "name": "llm-eval",
+      "category": "qa",
+      "description": "Design repeatable evaluations for LLM features using representative cases, rubrics, failure taxonomies and regression baselines. Use when LLM eval, prompt regression, AI quality.",
+      "triggers": [
+        "LLM eval",
+        "prompt regression",
+        "AI quality"
+      ],
+      "path": "plugins/skillshop/skills/llm-eval/SKILL.md"
+    },
+    {
+      "name": "load-modeler",
+      "category": "performance",
+      "description": "Translate real product usage or recorded journeys into representative arrival rates, concurrency, scenario weights, data cardinality and think time. Use when traffic model, journey to load, performance scenario design.",
+      "triggers": [
+        "traffic model",
+        "journey to load",
+        "performance scenario design"
+      ],
+      "path": "plugins/skillshop/skills/load-modeler/SKILL.md"
+    },
+    {
+      "name": "load-test",
+      "category": "performance",
+      "description": "Design, execute and interpret realistic authorized load tests using traffic models, explicit SLOs, progressive ramps and system telemetry. Use when load test, capacity validation, performance before release.",
+      "triggers": [
+        "load test",
+        "capacity validation",
+        "performance before release"
+      ],
+      "path": "plugins/skillshop/skills/load-test/SKILL.md"
+    },
+    {
+      "name": "localization-review",
+      "category": "frontend",
+      "description": "Review UI and data handling for locale-aware dates, numbers, currency, Unicode, text expansion and international input. Use when localization, internationalization, currency locale.",
+      "triggers": [
+        "localization",
+        "internationalization",
+        "currency locale"
+      ],
+      "path": "plugins/skillshop/skills/localization-review/SKILL.md"
+    },
+    {
+      "name": "logging-review",
+      "category": "reliability",
+      "description": "Review logging for stable structure, useful context, privacy, noise and ingestion cost. Use when logging review, noisy logs, incident context.",
+      "triggers": [
+        "logging review",
+        "noisy logs",
+        "incident context"
+      ],
+      "path": "plugins/skillshop/skills/logging-review/SKILL.md"
+    },
+    {
+      "name": "low-end-device",
+      "category": "frontend",
+      "description": "Test and design for constrained CPU, memory, GPU and network so the product stays usable beyond flagship hardware. Use when low-end Android, constrained device, mobile performance.",
+      "triggers": [
+        "low-end Android",
+        "constrained device",
+        "mobile performance"
+      ],
+      "path": "plugins/skillshop/skills/low-end-device/SKILL.md"
+    },
+    {
+      "name": "manual-test-designer",
+      "category": "qa",
+      "description": "Design concise manual test cases where human judgment, hardware or low-frequency workflows make automation a poor fit. Use when manual QA, hardware test, acceptance test.",
+      "triggers": [
+        "manual QA",
+        "hardware test",
+        "acceptance test"
+      ],
+      "path": "plugins/skillshop/skills/manual-test-designer/SKILL.md"
+    },
+    {
+      "name": "map-performance-review",
+      "category": "performance",
+      "description": "Review interactive map rendering, layers, markers, data updates and geospatial payloads for smooth constrained-device performance. Use when map performance, MapLibre, many markers.",
+      "triggers": [
+        "map performance",
+        "MapLibre",
+        "many markers"
+      ],
+      "path": "plugins/skillshop/skills/map-performance-review/SKILL.md"
+    },
+    {
+      "name": "migration-doctor",
+      "category": "backend",
+      "description": "Review or repair risky migrations with attention to locks, backfills, partial progress, retry and recovery. Use when migration risk, large backfill, failed migration.",
+      "triggers": [
+        "migration risk",
+        "large backfill",
+        "failed migration"
+      ],
+      "path": "plugins/skillshop/skills/migration-doctor/SKILL.md"
+    },
+    {
+      "name": "mobile-device-qa",
+      "category": "qa",
+      "description": "Test mobile experiences across realistic screens, touch input, keyboards, orientation, lifecycle and constrained devices. Use when mobile QA, Android iOS, device matrix.",
+      "triggers": [
+        "mobile QA",
+        "Android iOS",
+        "device matrix"
+      ],
+      "path": "plugins/skillshop/skills/mobile-device-qa/SKILL.md"
+    },
+    {
+      "name": "mobile-native-feasibility",
+      "category": "architecture",
+      "description": "Determine whether a mobile requirement belongs in web, PWA, cross-platform native or platform-native code based on APIs and performance. Use when mobile architecture, React Native Flutter native, device API.",
+      "triggers": [
+        "mobile architecture",
+        "React Native Flutter native",
+        "device API"
+      ],
+      "path": "plugins/skillshop/skills/mobile-native-feasibility/SKILL.md"
+    },
+    {
+      "name": "model-serving-review",
+      "category": "performance",
+      "description": "Review local or hosted model-serving paths for memory fit, batching, concurrency, latency, queueing and fallback behavior. Use when vLLM, Ollama, model serving.",
+      "triggers": [
+        "vLLM",
+        "Ollama",
+        "model serving"
+      ],
+      "path": "plugins/skillshop/skills/model-serving-review/SKILL.md"
+    },
+    {
+      "name": "modularity-review",
+      "category": "architecture",
+      "description": "Assess whether module boundaries match domain responsibility and change patterns instead of arbitrary technical layers. Use when circular dependencies, changes touch everywhere, module boundaries.",
+      "triggers": [
+        "circular dependencies",
+        "changes touch everywhere",
+        "module boundaries"
+      ],
+      "path": "plugins/skillshop/skills/modularity-review/SKILL.md"
+    },
+    {
+      "name": "multi-tenant-review",
+      "category": "security",
+      "description": "Prove tenant isolation across queries, caches, files, jobs, logs, exports, search and administrative paths. Use when multi-tenant SaaS, tenant isolation, cross-tenant risk.",
+      "triggers": [
+        "multi-tenant SaaS",
+        "tenant isolation",
+        "cross-tenant risk"
+      ],
+      "path": "plugins/skillshop/skills/multi-tenant-review/SKILL.md"
+    },
+    {
+      "name": "mutation-test-planner",
+      "category": "qa",
+      "description": "Use targeted mutation testing to find important behavior that existing tests execute but fail to protect. Use when mutation testing, high coverage low confidence, test effectiveness.",
+      "triggers": [
+        "mutation testing",
+        "high coverage low confidence",
+        "test effectiveness"
+      ],
+      "path": "plugins/skillshop/skills/mutation-test-planner/SKILL.md"
+    },
+    {
+      "name": "nfc-workflow-review",
+      "category": "architecture",
+      "description": "Review NFC-based user workflows for reader/platform constraints, identity mapping, offline behavior, retries and physical failure modes. Use when NFC, badge reader, tap workflow.",
+      "triggers": [
+        "NFC",
+        "badge reader",
+        "tap workflow"
+      ],
+      "path": "plugins/skillshop/skills/nfc-workflow-review/SKILL.md"
+    },
+    {
+      "name": "no-mouse",
+      "category": "frontend",
+      "description": "Verify important web functionality is usable keyboard-only with sensible focus order, visible focus and control semantics. Use when keyboard only, accessibility, focus order.",
+      "triggers": [
+        "keyboard only",
+        "accessibility",
+        "focus order"
+      ],
+      "path": "plugins/skillshop/skills/no-mouse/SKILL.md"
+    },
+    {
+      "name": "observability-doctor",
+      "category": "reliability",
+      "description": "Ensure operators can diagnose important failures from logs, metrics and traces without reproducing them locally. Use when observability review, hard incident debugging, telemetry gaps.",
+      "triggers": [
+        "observability review",
+        "hard incident debugging",
+        "telemetry gaps"
+      ],
+      "path": "plugins/skillshop/skills/observability-doctor/SKILL.md"
+    },
+    {
+      "name": "offline-first-review",
+      "category": "architecture",
+      "description": "Review offline-capable workflows for local state, sync ownership, conflict resolution, retries and user-visible freshness. Use when offline first, sync, field app.",
+      "triggers": [
+        "offline first",
+        "sync",
+        "field app"
+      ],
+      "path": "plugins/skillshop/skills/offline-first-review/SKILL.md"
+    },
+    {
+      "name": "one-handed",
+      "category": "frontend",
+      "description": "Review mobile interactions for thumb reach, touch target sizing and common one-handed use. Use when mobile ergonomics, thumb reach, touch targets.",
+      "triggers": [
+        "mobile ergonomics",
+        "thumb reach",
+        "touch targets"
+      ],
+      "path": "plugins/skillshop/skills/one-handed/SKILL.md"
+    },
+    {
+      "name": "openapi-review",
+      "category": "backend",
+      "description": "Review OpenAPI descriptions for runtime accuracy, generator friendliness, auth/error completeness and compatibility. Use when OpenAPI, Swagger, client generation.",
+      "triggers": [
+        "OpenAPI",
+        "Swagger",
+        "client generation"
+      ],
+      "path": "plugins/skillshop/skills/openapi-review/SKILL.md"
+    },
+    {
+      "name": "pagination-review",
+      "category": "backend",
+      "description": "Review pagination for stable ordering, cursor correctness, filters, totals, large datasets and concurrent mutation behavior. Use when pagination, large list API, cursor.",
+      "triggers": [
+        "pagination",
+        "large list API",
+        "cursor"
+      ],
+      "path": "plugins/skillshop/skills/pagination-review/SKILL.md"
+    },
+    {
+      "name": "paranoid",
+      "category": "reliability",
+      "description": "Assume dependencies, operators, networks and processes fail and expose the hidden assumptions most likely to hurt production. Use when reliability review, critical workflow, failure assumptions.",
+      "triggers": [
+        "reliability review",
+        "critical workflow",
+        "failure assumptions"
+      ],
+      "path": "plugins/skillshop/skills/paranoid/SKILL.md"
+    },
+    {
+      "name": "payment-integrity",
+      "category": "security",
+      "description": "Review payment workflows so retries, ambiguous gateway outcomes, webhooks, local state and settlement cannot create duplicate charges or false success. Use when payment integration, gateway state, settlement reconciliation.",
+      "triggers": [
+        "payment integration",
+        "gateway state",
+        "settlement reconciliation"
+      ],
+      "path": "plugins/skillshop/skills/payment-integrity/SKILL.md"
+    },
+    {
+      "name": "pixel-cop",
+      "category": "frontend",
+      "description": "Review visual consistency in typography, spacing, hierarchy, tokens, alignment, icons, radius and responsive states. Use when UI polish, design drift, visual consistency.",
+      "triggers": [
+        "UI polish",
+        "design drift",
+        "visual consistency"
+      ],
+      "path": "plugins/skillshop/skills/pixel-cop/SKILL.md"
+    },
+    {
+      "name": "privacy-review",
+      "category": "security",
+      "description": "Review personal and sensitive data collection, exposure, logging, sharing, retention and deletion with minimization as the default. Use when PII, privacy, data collection.",
+      "triggers": [
+        "PII",
+        "privacy",
+        "data collection"
+      ],
+      "path": "plugins/skillshop/skills/privacy-review/SKILL.md"
+    },
+    {
+      "name": "production-readiness",
+      "category": "reliability",
+      "description": "Gate production launch on configuration, migrations, reliability, observability, backup, rollback, security and verified critical journeys. Use when production readiness, launch review, go live.",
+      "triggers": [
+        "production readiness",
+        "launch review",
+        "go live"
+      ],
+      "path": "plugins/skillshop/skills/production-readiness/SKILL.md"
+    },
+    {
+      "name": "productionize",
+      "category": "delivery",
+      "description": "Turn prototype code into production software by filling reliability, security, observability, configuration and operational gaps. Use when prototype to production, hardening, client-facing launch.",
+      "triggers": [
+        "prototype to production",
+        "hardening",
+        "client-facing launch"
+      ],
+      "path": "plugins/skillshop/skills/productionize/SKILL.md"
+    },
+    {
+      "name": "profiler",
+      "category": "performance",
+      "description": "Find where CPU, latency, allocations, I/O or contention are actually spent before optimizing. Use when profile slow code, CPU high, latency investigation.",
+      "triggers": [
+        "profile slow code",
+        "CPU high",
+        "latency investigation"
+      ],
+      "path": "plugins/skillshop/skills/profiler/SKILL.md"
+    },
+    {
+      "name": "project-profiler",
+      "category": "meta",
+      "description": "Fingerprint an unfamiliar repository's stack, boundaries, risks, tests and delivery shape before other skills act. Use when new repository, route skills by stack, plan substantial work.",
+      "triggers": [
+        "new repository",
+        "route skills by stack",
+        "plan substantial work"
+      ],
+      "path": "plugins/skillshop/skills/project-profiler/SKILL.md"
+    },
+    {
+      "name": "prompt-injection-review",
+      "category": "security",
+      "description": "Review LLM-integrated systems for untrusted instruction/data boundaries, tool authorization, secret exposure and unsafe action chaining. Use when prompt injection, LLM security, agent tool safety.",
+      "triggers": [
+        "prompt injection",
+        "LLM security",
+        "agent tool safety"
+      ],
+      "path": "plugins/skillshop/skills/prompt-injection-review/SKILL.md"
+    },
+    {
+      "name": "prototype",
+      "category": "delivery",
+      "description": "Build the cheapest artifact that answers a specific product or technical unknown without becoming accidental production architecture. Use when proof of concept, high-risk unknown, demo.",
+      "triggers": [
+        "proof of concept",
+        "high-risk unknown",
+        "demo"
+      ],
+      "path": "plugins/skillshop/skills/prototype/SKILL.md"
+    },
+    {
+      "name": "qa-explorer",
+      "category": "qa",
+      "description": "Explore an application like a skeptical human tester by varying input, navigation, timing, state and failure conditions. Use when exploratory QA, new workflow, find edge cases.",
+      "triggers": [
+        "exploratory QA",
+        "new workflow",
+        "find edge cases"
+      ],
+      "path": "plugins/skillshop/skills/qa-explorer/SKILL.md"
+    },
+    {
+      "name": "qa-orchestrator",
+      "category": "qa",
+      "description": "Plan and coordinate the right mix of exploratory, manual, automated, visual, API, data, accessibility, device and performance testing. Use when QA plan, release testing, choose test types.",
+      "triggers": [
+        "QA plan",
+        "release testing",
+        "choose test types"
+      ],
+      "path": "plugins/skillshop/skills/qa-orchestrator/SKILL.md"
+    },
+    {
+      "name": "query-hunter",
+      "category": "backend",
+      "description": "Find N+1, duplicate, unbounded and badly shaped database access from actual application paths. Use when N+1, too many queries, ORM performance.",
+      "triggers": [
+        "N+1",
+        "too many queries",
+        "ORM performance"
+      ],
+      "path": "plugins/skillshop/skills/query-hunter/SKILL.md"
+    },
+    {
+      "name": "queue-pressure",
+      "category": "reliability",
+      "description": "Review queues under bursty producers, slow consumers, poison messages, retries and backlog growth. Use when queue backlog, worker pressure, poison message.",
+      "triggers": [
+        "queue backlog",
+        "worker pressure",
+        "poison message"
+      ],
+      "path": "plugins/skillshop/skills/queue-pressure/SKILL.md"
+    },
+    {
+      "name": "race-hunter",
+      "category": "reliability",
+      "description": "Find concurrency defects by forcing unsafe interleavings, duplicate operations and shared-state races. Use when race condition, intermittent concurrency bug, parallel writes.",
+      "triggers": [
+        "race condition",
+        "intermittent concurrency bug",
+        "parallel writes"
+      ],
+      "path": "plugins/skillshop/skills/race-hunter/SKILL.md"
+    },
+    {
+      "name": "rate-limit-review",
+      "category": "security",
+      "description": "Design and test rate limits that constrain abuse without letting one actor deny service to legitimate users. Use when rate limit, abuse prevention, 429.",
+      "triggers": [
+        "rate limit",
+        "abuse prevention",
+        "429"
+      ],
+      "path": "plugins/skillshop/skills/rate-limit-review/SKILL.md"
+    },
+    {
+      "name": "refactor",
+      "category": "delivery",
+      "description": "Improve internal structure while preserving externally observable behavior and limiting migration risk. Use when refactor, reduce coupling, cleanup without behavior change.",
+      "triggers": [
+        "refactor",
+        "reduce coupling",
+        "cleanup without behavior change"
+      ],
+      "path": "plugins/skillshop/skills/refactor/SKILL.md"
+    },
+    {
+      "name": "regression-analysis",
+      "category": "performance",
+      "description": "Compare performance runs fairly and identify operationally meaningful regressions while accounting for environment and variance. Use when performance regression, before after benchmark, CI perf gate.",
+      "triggers": [
+        "performance regression",
+        "before after benchmark",
+        "CI perf gate"
+      ],
+      "path": "plugins/skillshop/skills/regression-analysis/SKILL.md"
+    },
+    {
+      "name": "regression-suite",
+      "category": "qa",
+      "description": "Build a compact regression suite from critical journeys and escaped defects, with a fast smoke subset. Use when regression suite, smoke tests, repeated bugs.",
+      "triggers": [
+        "regression suite",
+        "smoke tests",
+        "repeated bugs"
+      ],
+      "path": "plugins/skillshop/skills/regression-suite/SKILL.md"
+    },
+    {
+      "name": "release-candidate-qa",
+      "category": "qa",
+      "description": "Run risk-based final QA against the exact release candidate and produce a go, conditional-go or no-go recommendation. Use when staging signoff, release candidate, pre-production QA.",
+      "triggers": [
+        "staging signoff",
+        "release candidate",
+        "pre-production QA"
+      ],
+      "path": "plugins/skillshop/skills/release-candidate-qa/SKILL.md"
+    },
+    {
+      "name": "release-manager",
+      "category": "delivery",
+      "description": "Prepare and execute a release with exact artifact provenance, rollout gates, migrations, rollback and post-deploy checks. Use when release, promote to production, versioned deploy.",
+      "triggers": [
+        "release",
+        "promote to production",
+        "versioned deploy"
+      ],
+      "path": "plugins/skillshop/skills/release-manager/SKILL.md"
+    },
+    {
+      "name": "remove-dead-code",
+      "category": "delivery",
+      "description": "Delete unused code, dependencies, routes, styles and flags only after proving they are not part of active or dynamic behavior. Use when dead code, deprecated feature, unused dependency.",
+      "triggers": [
+        "dead code",
+        "deprecated feature",
+        "unused dependency"
+      ],
+      "path": "plugins/skillshop/skills/remove-dead-code/SKILL.md"
+    },
+    {
+      "name": "requirements-audit",
+      "category": "planning",
+      "description": "Trace implementation against authoritative requirements and classify each item as complete, partial, missing, changed or unverifiable. Use when before demo, scope audit, release requirements.",
+      "triggers": [
+        "before demo",
+        "scope audit",
+        "release requirements"
+      ],
+      "path": "plugins/skillshop/skills/requirements-audit/SKILL.md"
+    },
+    {
+      "name": "requirements-to-tasks",
+      "category": "planning",
+      "description": "Convert messy product or client requirements into testable acceptance criteria and implementable vertical tasks. Use when client notes to tickets, ambiguous feature, acceptance criteria needed.",
+      "triggers": [
+        "client notes to tickets",
+        "ambiguous feature",
+        "acceptance criteria needed"
+      ],
+      "path": "plugins/skillshop/skills/requirements-to-tasks/SKILL.md"
+    },
+    {
+      "name": "resource-leak-hunter",
+      "category": "reliability",
+      "description": "Find memory, goroutine/thread, file descriptor, connection, timer and subscription leaks under repeated or sustained workloads. Use when memory leak, connection leak, resource growth.",
+      "triggers": [
+        "memory leak",
+        "connection leak",
+        "resource growth"
+      ],
+      "path": "plugins/skillshop/skills/resource-leak-hunter/SKILL.md"
+    },
+    {
+      "name": "responsive-review",
+      "category": "frontend",
+      "description": "Verify layouts adapt intentionally across viewport widths, text lengths, zoom and virtual keyboards instead of merely shrinking. Use when responsive UI, mobile layout, breakpoint bugs.",
+      "triggers": [
+        "responsive UI",
+        "mobile layout",
+        "breakpoint bugs"
+      ],
+      "path": "plugins/skillshop/skills/responsive-review/SKILL.md"
+    },
+    {
+      "name": "reverse-proxy-review",
+      "category": "reliability",
+      "description": "Review reverse-proxy configuration for routing, headers, timeouts, buffering, TLS, websocket behavior and safe reloads. Use when Caddy, Nginx, reverse proxy.",
+      "triggers": [
+        "Caddy",
+        "Nginx",
+        "reverse proxy"
+      ],
+      "path": "plugins/skillshop/skills/reverse-proxy-review/SKILL.md"
+    },
+    {
+      "name": "review-pr",
+      "category": "delivery",
+      "description": "Review a pull request for correctness, regressions, security, performance, maintainability and missing verification. Use when PR review, pre-merge audit, diff review.",
+      "triggers": [
+        "PR review",
+        "pre-merge audit",
+        "diff review"
+      ],
+      "path": "plugins/skillshop/skills/review-pr/SKILL.md"
+    },
+    {
+      "name": "rollback-review",
+      "category": "reliability",
+      "description": "Prove a release can be reverted or forward-fixed safely, including schema compatibility and irreversible side effects. Use when rollback plan, risky release, database deploy.",
+      "triggers": [
+        "rollback plan",
+        "risky release",
+        "database deploy"
+      ],
+      "path": "plugins/skillshop/skills/rollback-review/SKILL.md"
+    },
+    {
+      "name": "schema-review",
+      "category": "backend",
+      "description": "Review data models for ownership, invariants, constraints, keys, indexes and lifecycle relationships. Use when database schema, ORM model, entity design.",
+      "triggers": [
+        "database schema",
+        "ORM model",
+        "entity design"
+      ],
+      "path": "plugins/skillshop/skills/schema-review/SKILL.md"
+    },
+    {
+      "name": "search-review",
+      "category": "backend",
+      "description": "Review search for relevance, indexing lag, tenant/access boundaries, broad-query behavior and safe degradation. Use when search feature, full text search, search index.",
+      "triggers": [
+        "search feature",
+        "full text search",
+        "search index"
+      ],
+      "path": "plugins/skillshop/skills/search-review/SKILL.md"
+    },
+    {
+      "name": "secrets-review",
+      "category": "security",
+      "description": "Prevent credentials and sensitive keys from leaking through source, history, logs, client bundles, CI artifacts or container layers. Use when secret handling, credential leak, new API key.",
+      "triggers": [
+        "secret handling",
+        "credential leak",
+        "new API key"
+      ],
+      "path": "plugins/skillshop/skills/secrets-review/SKILL.md"
+    },
+    {
+      "name": "security-review",
+      "category": "security",
+      "description": "Perform risk-driven application security review of changed attack surface and trust boundaries instead of dumping a generic checklist. Use when security review, public endpoint, sensitive feature.",
+      "triggers": [
+        "security review",
+        "public endpoint",
+        "sensitive feature"
+      ],
+      "path": "plugins/skillshop/skills/security-review/SKILL.md"
+    },
+    {
+      "name": "session-review",
+      "category": "security",
+      "description": "Review session and token lifecycle for fixation, theft, storage, expiry, rotation, revocation and concurrent-device behavior. Use when session cookies, JWT, refresh token.",
+      "triggers": [
+        "session cookies",
+        "JWT",
+        "refresh token"
+      ],
+      "path": "plugins/skillshop/skills/session-review/SKILL.md"
+    },
+    {
+      "name": "shutdown-review",
+      "category": "reliability",
+      "description": "Verify processes stop gracefully without dropping in-flight work, corrupting state or hanging deployments. Use when graceful shutdown, rolling restart, worker drain.",
+      "triggers": [
+        "graceful shutdown",
+        "rolling restart",
+        "worker drain"
+      ],
+      "path": "plugins/skillshop/skills/shutdown-review/SKILL.md"
+    },
+    {
+      "name": "skill-author",
+      "category": "meta",
+      "description": "Create or revise focused Agent Skills with good activation descriptions, workflows, resources and verification. Use when create a skill, improve a skill, package team expertise.",
+      "triggers": [
+        "create a skill",
+        "improve a skill",
+        "package team expertise"
+      ],
+      "path": "plugins/skillshop/skills/skill-author/SKILL.md"
+    },
+    {
+      "name": "skill-router",
+      "category": "meta",
+      "description": "Select and sequence the smallest useful set of specialist skills for the current task. Use when multi-domain engineering task, unclear specialist, compose several skills.",
+      "triggers": [
+        "multi-domain engineering task",
+        "unclear specialist",
+        "compose several skills"
+      ],
+      "path": "plugins/skillshop/skills/skill-router/SKILL.md"
+    },
+    {
+      "name": "soak-test",
+      "category": "performance",
+      "description": "Run sustained workloads long enough to expose leaks, queue growth, cache drift, connection exhaustion and time-dependent degradation. Use when soak test, endurance test, resource leak.",
+      "triggers": [
+        "soak test",
+        "endurance test",
+        "resource leak"
+      ],
+      "path": "plugins/skillshop/skills/soak-test/SKILL.md"
+    },
+    {
+      "name": "speed-demon",
+      "category": "performance",
+      "description": "Aggressively optimize measured hot paths after correctness is established while keeping overhead and complexity accountable. Use when hot path optimization, latency critical, throughput optimization.",
+      "triggers": [
+        "hot path optimization",
+        "latency critical",
+        "throughput optimization"
+      ],
+      "path": "plugins/skillshop/skills/speed-demon/SKILL.md"
+    },
+    {
+      "name": "spike-test",
+      "category": "performance",
+      "description": "Validate system behavior, amplification and recovery when traffic increases abruptly beyond normal steady-state assumptions. Use when traffic spike, flash crowd, burst testing.",
+      "triggers": [
+        "traffic spike",
+        "flash crowd",
+        "burst testing"
+      ],
+      "path": "plugins/skillshop/skills/spike-test/SKILL.md"
+    },
+    {
+      "name": "state-machine",
+      "category": "architecture",
+      "description": "Make complex lifecycle behavior explicit as states, legal transitions, guards, side effects and invariants. Use when many status fields, workflow lifecycle, invalid state bugs.",
+      "triggers": [
+        "many status fields",
+        "workflow lifecycle",
+        "invalid state bugs"
+      ],
+      "path": "plugins/skillshop/skills/state-machine/SKILL.md"
+    },
+    {
+      "name": "systematic-debugging",
+      "category": "delivery",
+      "description": "Debug through evidence, narrowing boundaries and hypothesis testing before attempting fixes. Use when confusing failure, intermittent bug, multiple failed fixes.",
+      "triggers": [
+        "confusing failure",
+        "intermittent bug",
+        "multiple failed fixes"
+      ],
+      "path": "plugins/skillshop/skills/systematic-debugging/SKILL.md"
+    },
+    {
+      "name": "take-my-load-operator",
+      "category": "performance",
+      "description": "Operate Take My Load safely for distributed capacity-aware tests with authorization, synchronized workers and generator sanity checks. Use when take-my-load, distributed load generation, multi-worker load.",
+      "triggers": [
+        "take-my-load",
+        "distributed load generation",
+        "multi-worker load"
+      ],
+      "path": "plugins/skillshop/skills/take-my-load-operator/SKILL.md"
+    },
+    {
+      "name": "tech-debt-review",
+      "category": "architecture",
+      "description": "Identify technical debt that measurably slows delivery or increases defects and rank it by payoff instead of aesthetics. Use when tech debt backlog, messy codebase, cleanup planning.",
+      "triggers": [
+        "tech debt backlog",
+        "messy codebase",
+        "cleanup planning"
+      ],
+      "path": "plugins/skillshop/skills/tech-debt-review/SKILL.md"
+    },
+    {
+      "name": "technical-feasibility",
+      "category": "architecture",
+      "description": "Determine whether a proposed capability is buildable within platform, integration, performance, schedule and maintenance constraints. Use when can we build this, novel integration, hardware or platform risk.",
+      "triggers": [
+        "can we build this",
+        "novel integration",
+        "hardware or platform risk"
+      ],
+      "path": "plugins/skillshop/skills/technical-feasibility/SKILL.md"
+    },
+    {
+      "name": "test-architect",
+      "category": "qa",
+      "description": "Design the overall test portfolio and CI tiers so confidence comes from complementary layers rather than maximum test count. Use when test strategy, slow flaky suite, coverage gaps.",
+      "triggers": [
+        "test strategy",
+        "slow flaky suite",
+        "coverage gaps"
+      ],
+      "path": "plugins/skillshop/skills/test-architect/SKILL.md"
+    },
+    {
+      "name": "test-driven-development",
+      "category": "delivery",
+      "description": "Use short red-green-refactor cycles when behavior is known and executable tests can define correctness first. Use when TDD, test-first, regression bug fix.",
+      "triggers": [
+        "TDD",
+        "test-first",
+        "regression bug fix"
+      ],
+      "path": "plugins/skillshop/skills/test-driven-development/SKILL.md"
+    },
+    {
+      "name": "threat-model",
+      "category": "security",
+      "description": "Build a focused threat model around assets, actors, trust boundaries, attack paths and mitigations for a feature or system. Use when threat model, new sensitive system, security design.",
+      "triggers": [
+        "threat model",
+        "new sensitive system",
+        "security design"
+      ],
+      "path": "plugins/skillshop/skills/threat-model/SKILL.md"
+    },
+    {
+      "name": "time-zone-review",
+      "category": "backend",
+      "description": "Review temporal modeling for instants, local dates, wall times, DST, recurring schedules and API serialization. Use when timezone, DST, scheduling.",
+      "triggers": [
+        "timezone",
+        "DST",
+        "scheduling"
+      ],
+      "path": "plugins/skillshop/skills/time-zone-review/SKILL.md"
+    },
+    {
+      "name": "tls-review",
+      "category": "security",
+      "description": "Review TLS termination, certificate lifecycle, protocol policy, proxy trust and mixed-content/redirect behavior. Use when TLS, certificate, HTTPS.",
+      "triggers": [
+        "TLS",
+        "certificate",
+        "HTTPS"
+      ],
+      "path": "plugins/skillshop/skills/tls-review/SKILL.md"
+    },
+    {
+      "name": "transaction-review",
+      "category": "backend",
+      "description": "Review multi-step writes for atomicity, isolation, external side effects and ambiguous commit outcomes. Use when transaction boundary, partial write, financial workflow.",
+      "triggers": [
+        "transaction boundary",
+        "partial write",
+        "financial workflow"
+      ],
+      "path": "plugins/skillshop/skills/transaction-review/SKILL.md"
+    },
+    {
+      "name": "upload-security",
+      "category": "security",
+      "description": "Review uploads for size, path, content, storage, rendering, archive and malware risks. Use when file upload, image upload, archive import.",
+      "triggers": [
+        "file upload",
+        "image upload",
+        "archive import"
+      ],
+      "path": "plugins/skillshop/skills/upload-security/SKILL.md"
+    },
+    {
+      "name": "ux-feasibility",
+      "category": "frontend",
+      "description": "Determine whether a proposed UX can be implemented well on target platforms within stack, performance, accessibility and schedule constraints. Use when UX feasibility, mockup review, complex interaction.",
+      "triggers": [
+        "UX feasibility",
+        "mockup review",
+        "complex interaction"
+      ],
+      "path": "plugins/skillshop/skills/ux-feasibility/SKILL.md"
+    },
+    {
+      "name": "verification-before-completion",
+      "category": "meta",
+      "description": "Gate completion claims behind fresh evidence that directly proves the claimed outcome. Use when before saying done, before PR or release, after final code change.",
+      "triggers": [
+        "before saying done",
+        "before PR or release",
+        "after final code change"
+      ],
+      "path": "plugins/skillshop/skills/verification-before-completion/SKILL.md"
+    },
+    {
+      "name": "visual-regression",
+      "category": "qa",
+      "description": "Detect unintended visual changes using stable screenshot baselines while separating environmental noise from real regressions. Use when visual QA, CSS changes, screenshot diff.",
+      "triggers": [
+        "visual QA",
+        "CSS changes",
+        "screenshot diff"
+      ],
+      "path": "plugins/skillshop/skills/visual-regression/SKILL.md"
+    },
+    {
+      "name": "webhook-security",
+      "category": "security",
+      "description": "Review webhooks for signature verification, replay resistance, duplicate delivery, retries, ordering and secret rotation. Use when webhook, provider callback, signed event.",
+      "triggers": [
+        "webhook",
+        "provider callback",
+        "signed event"
+      ],
+      "path": "plugins/skillshop/skills/webhook-security/SKILL.md"
+    },
+    {
+      "name": "websocket-review",
+      "category": "backend",
+      "description": "Review WebSocket and SSE behavior for auth, ordering, reconnect, replay, slow consumers and backpressure. Use when WebSocket, SSE, realtime updates.",
+      "triggers": [
+        "WebSocket",
+        "SSE",
+        "realtime updates"
+      ],
+      "path": "plugins/skillshop/skills/websocket-review/SKILL.md"
+    }
+  ]
+}
