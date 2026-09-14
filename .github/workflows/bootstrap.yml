@@ -27,7 +27,7 @@ jobs:
           find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .bootstrap -exec rm -rf {} +
           tar -xJf /tmp/skillshop.tar.xz -C .
           rm -rf .bootstrap
-          rm -f .github/workflows/bootstrap.yml
+          rm -f .github/workflows/bootstrap.yml .github/workflows/validate.yml
 
       - name: Validate expanded repository
         run: python3 scripts/validate.py
