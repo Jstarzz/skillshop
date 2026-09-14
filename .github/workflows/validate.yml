@@ -28,3 +28,9 @@ jobs:
           grep -qx 'payment-integrity' /tmp/ranked.txt
           grep -qx 'multi-tenant-review' /tmp/ranked.txt
           grep -qx 'production-readiness' /tmp/ranked.txt
+      - name: Assert prompt hook routes engineering work
+        run: |
+          printf '%s\n' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'","prompt":"Review this project for production readiness"}' | python3 plugins/skillshop/scripts/route_prompt.py > /tmp/hook.json
+          grep -q 'skillshop:shop' /tmp/hook.json
+          printf '%s\n' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'","prompt":"thanks"}' | python3 plugins/skillshop/scripts/route_prompt.py > /tmp/chitchat.txt
+          test ! -s /tmp/chitchat.txt
