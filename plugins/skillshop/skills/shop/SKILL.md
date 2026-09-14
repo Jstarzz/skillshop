@@ -1,6 +1,7 @@
 ---
 name: shop
-description: "Route substantive software-engineering work to the smallest useful set of specialized SkillShop playbooks. Use for architecture, implementation, debugging, QA, performance, security, reliability, frontend, backend, delivery, migrations, production readiness, mobile, payments, or other engineering work where expert workflow guidance can improve the result."
+description: "Route substantive software-engineering work to the smallest useful set of specialized SkillShop playbooks before analysis or execution. Use for architecture, implementation, debugging, QA, performance, security, reliability, frontend, backend, delivery, migrations, production readiness, mobile, payments, or other engineering work where expert workflow guidance can improve the result."
+when_to_use: "Invoke before substantive engineering work, including project reviews and production-readiness checks. Do not skip routing merely because the task looks solvable without a specialist playbook."
 allowed-tools: "Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/recommend.py *) Read Glob Grep"
 ---
 
@@ -10,7 +11,9 @@ Act as the dispatcher, not as another generic engineering checklist.
 
 ## Route first
 
-For substantive engineering work, derive a short routing query from the user's actual task and the repository context. Then run:
+When this skill is invoked for substantive engineering work, route before doing the substantive analysis or implementation.
+
+Derive a short routing query from the user's actual task and the repository context. Then run:
 
 ```bash
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/recommend.py" \
@@ -20,7 +23,7 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/recommend.py" \
   --json
 ```
 
-For a tiny/local task where a specialist playbook would add no value, skip routing and proceed normally.
+If the task is genuinely trivial or non-engineering, report that no specialist playbook is needed and return to the request.
 
 ## Choose a small composition
 
@@ -45,9 +48,15 @@ Read only selected playbooks. Supporting files under that playbook directory may
 
 Treat each loaded playbook as expert procedural guidance. Reconcile conflicts instead of stacking contradictory instructions. User requirements and project-specific constraints win.
 
-## Make the selection visible only when useful
+## Routing receipt
 
-Normally just use the guidance. If the choice itself matters, briefly say which playbooks were selected and why. Do not dump routing internals or raw scores unless asked.
+If the user asks whether SkillShop was used, or asks for routing visibility, report only playbooks actually read in this turn using:
+
+`SkillShop → <playbook>, <playbook>`
+
+If none were loaded, report `SkillShop → no specialist needed`.
+
+Do not claim a playbook was selected unless its `SKILL.md` was actually read.
 
 ## Safety and execution
 
