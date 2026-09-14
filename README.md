@@ -1,193 +1,199 @@
 # SkillShop
 
-> **Claude shops for expert workflows instead of pretending one generic prompt is good at everything.**
+**SkillShop is a low-context engineering playbook marketplace for coding agents.**
 
-[![Validate skills](https://github.com/Jstarzz/skillshop/actions/workflows/validate.yml/badge.svg)](https://github.com/Jstarzz/skillshop/actions/workflows/validate.yml)
-[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-111827)](https://agentskills.io/)
-[![Skills](https://img.shields.io/badge/skills-157-2563eb)](docs/CATALOG.md)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+Instead of registering 157 specialist skills into every Claude Code turn, SkillShop exposes one automatic router and keeps the full expert library off the always-on skill list. Claude "shops" for the playbooks that fit the current project and task, then reads only those playbooks.
 
-**SkillShop** is a composable marketplace of engineering playbooks for coding agents. It packages repeatable expert judgment into small, triggerable [Agent Skills](https://agentskills.io/) so an agent can inspect a project, select the specialists that fit the job, and load only those workflows.
+## Why this exists
 
-It is deliberately **not** a pile of `You are a senior engineer` prompts.
+Large skill packs have a hidden cost: Claude Code keeps every model-invocable skill name and description in context so the model knows what is available. With a large catalog, that listing consumes context and descriptions can be truncated.
 
-## What is in the shop?
+SkillShop v0.2 fixes that structurally:
 
-157 skills across architecture, backend, delivery, frontend/UX, planning, QA, performance, reliability, security, and meta-routing.
+```text
+user task + project
+        |
+        v
+ /skillshop:shop
+        |
+        +--> lightweight catalog search
+        |
+        +--> choose 1-5 useful playbooks
+        |
+        +--> read only those playbooks
+        v
+ execute composed workflow
+```
 
-A few examples:
+The plugin contains **157 engineering playbooks across 10 categories**, but only **4 plugin skills** are registered:
 
-- `caveman` — aggressively remove unjustified moving parts and abstractions.
-- `future-proof` — preserve only credible, cheap extension points.
-- `qa-explorer` — perform evidence-driven exploratory QA like an annoyingly competent tester.
-- `journey-recorder` — turn human or agent interaction traces into semantic user journeys.
-- `journey-compiler` — compile one semantic journey into manual QA, browser E2E, API tests, or load scenarios.
-- `bug-reproducer` — convert vague bug reports into minimal, repeatable reproductions and regression cases.
-- `load-test` — design, execute, and interpret realistic performance tests instead of just firing traffic.
-- `generator-sanity` — prove the load generator is not the bottleneck before trusting a benchmark.
-- `payment-integrity` — review money movement, idempotency, settlement, reconciliation, and duplicate-charge hazards.
-- `multi-tenant-review` — hunt for tenant-isolation leaks across data, caches, jobs, files, logs, and APIs.
-- `edge-case-goblin` — systematically attack ugly states and weird inputs.
-- `2am-debugger` — judge whether an on-call engineer could diagnose the system while half-dead at 2 AM.
-- `frontend-slop-obliterator` — hunt generic, incoherent, inaccessible, AI-slop UI patterns.
-- `verification-before-completion` — require fresh evidence before an agent claims the work is done.
+- `/skillshop:shop` — automatic/model-invocable router.
+- `/skillshop:find` — search the catalog without loading playbooks.
+- `/skillshop:apply` — load one exact playbook by name.
+- `/skillshop:catalog` — explain/browse the catalog.
 
-See the **[full catalog](docs/CATALOG.md)**.
+Only `shop` is model-invocable. The other three are user-only, so their descriptions do not stay in Claude's context.
 
-## Install in Claude Code
+## Install
 
 ```text
 /plugin marketplace add https://github.com/Jstarzz/skillshop
 /plugin install skillshop@skillshop
+/reload-plugins
 ```
 
-The marketplace exposes the `skillshop` plugin. Compatible hosts discover each skill from its small metadata header and load the full `SKILL.md` only when needed.
-
-## The idea
+After updating an existing v0.1 install:
 
 ```text
-                     project + task
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │ project-profiler │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │   skill-router   │
-                 └────────┬─────────┘
-                          │
-            search / rank / compose skills
-                          │
-        ┌─────────────────┼─────────────────┐
-        ▼                 ▼                 ▼
-     caveman          qa-explorer       load-test
-        │                 │                 │
-        └─────────────────┼─────────────────┘
-                          ▼
-                   evidence-backed work
+/plugin marketplace update skillshop
+/plugin update skillshop@skillshop
+/reload-plugins
 ```
 
-The router should select a **small set of directly relevant skills**, not activate the whole catalog. Some skills are intentionally adversarial to each other so the agent has to synthesize tradeoffs instead of accepting one worldview.
+Depending on your Claude Code version, reinstalling the plugin may be the simplest way to refresh a cached custom marketplace version.
 
-For example, an architecture decision may compose:
+## Use
+
+### Let Claude shop automatically
+
+Just work normally. For substantial engineering tasks Claude can invoke the router when specialist guidance would help.
+
+You can force routing explicitly:
 
 ```text
-caveman + future-proof + paranoid + cheap-ass
-                    ↓
-            architecture-review
-                    ↓
-              decision-record
+/skillshop:shop prepare this multi-tenant payment app for production and load test checkout
 ```
 
-## QA: record once, reuse the journey
-
-The QA subsystem treats a semantic user journey as a reusable engineering artifact:
+A sensible composition might be:
 
 ```text
-human tester OR agent exploration
-              │
-              ▼
-       journey-recorder
-              │
-              ▼
-        semantic journey
-              │
-              ▼
-       journey-compiler
-       ┌──────┼──────┬─────────┐
-       ▼      ▼      ▼         ▼
-     manual browser   API      load
-      case    E2E   sequence  scenario
+production-readiness
+payment-integrity
+multi-tenant-review
+load-test
+generator-sanity
 ```
 
-The canonical recording stores actors, preconditions, semantic actions, dynamic values, assertions, network evidence, and redaction rules. Raw screen coordinates are evidence at most; they are never the source of truth.
+The router does **not** blindly load all five. It selects the smallest set that materially changes the work.
+
+### Search manually
+
+```text
+/skillshop:find intermittent double-payment bug
+/skillshop:find Android background GPS battery
+/skillshop:find simplify overbuilt architecture
+```
+
+### Apply an exact playbook
+
+```text
+/skillshop:apply caveman
+/skillshop:apply qa-explorer
+/skillshop:apply load-test
+/skillshop:apply edge-case-goblin
+```
+
+The old v0.1 commands such as `/skillshop:caveman` are intentionally replaced by `/skillshop:apply caveman`; keeping 157 top-level commands would recreate the context-cost problem.
+
+## What is in the shop?
+
+The library covers:
+
+- **Architecture** — `caveman`, `future-proof`, `architecture-review`, `build-vs-buy`, `dependency-hater`, `technical-feasibility`, distributed-systems review, AI feature review.
+- **QA** — `qa-orchestrator`, `qa-explorer`, `manual-test-designer`, `automated-test-designer`, `bug-reproducer`, `journey-recorder`, `journey-compiler`, visual regression, API contract testing, device QA.
+- **Performance** — `load-test`, `load-modeler`, `generator-sanity`, `capacity-plan`, `benchmark-scientist`, `profiler`, `soak-test`, `spike-test`, `breakpoint-test`, `take-my-load-operator`.
+- **Frontend / UX** — `ux-feasibility`, `grandma`, `one-handed`, `low-end-device`, `pixel-cop`, `frontend-slop-obliterator`, responsive/accessibility/browser reviews.
+- **Backend** — API design, transactions, idempotency, queues, concurrency, schemas, pagination, background jobs.
+- **Reliability** — observability, bad-network, backup/restore, incidents, CI, containers, Kubernetes, health checks, shutdowns.
+- **Security** — authentication, authorization, secrets, threat models, uploads, webhooks, prompt injection, privacy.
+- **Delivery / planning** — implementation, bug fixing, PR review, release management, migration, rollback, requirements, handoff.
+
+See [`docs/CATALOG.md`](docs/CATALOG.md) for the full list.
+
+## QA journey model
+
+SkillShop includes a semantic journey workflow:
+
+```text
+human or agent exploration
+          |
+          v
+   journey-recorder
+          |
+          v
+ semantic journey
+          |
+   +------+------+------+
+   |      |      |      |
+ manual browser API    load
+ QA     E2E    test  scenario
+```
+
+Recordings should preserve semantic targets, state transitions, network evidence, assertions, dynamic values and redactions rather than brittle screen coordinates.
 
 ## Load testing
 
-`load-test` is the methodology skill. The traffic generator is a tool.
+`load-test` is methodology. A load generator is a tool.
 
-A sane performance workflow composes skills such as:
-
-```text
-load-modeler
-    ↓
-generator-sanity
-    ↓
-load-test
-    ├── spike-test
-    ├── soak-test
-    └── breakpoint-test
-    ↓
-regression-analysis
-    ↓
-capacity-plan
-```
-
-`take-my-load-operator` is an optional specialist for [Take My Load](https://github.com/Jstarzz/take-my-load), keeping target authorization, worker capacity, synchronized execution, generator telemetry, and measured-vs-configured throughput explicit.
+`take-my-load-operator` is the playbook for operating the Take My Load platform. It understands the controller/worker/data-plane split and insists on distinguishing configured/planned rate from measured throughput.
 
 ## Repository layout
 
 ```text
-.claude-plugin/marketplace.json     Claude Code marketplace
+.claude-plugin/marketplace.json
 plugins/skillshop/
-  .claude-plugin/plugin.json        Plugin manifest
-  skills/<skill>/SKILL.md           157 Agent Skills
-  skills/<skill>/references/        On-demand deep references
-  skills/<skill>/scripts/           Skill-local tooling
-  skills/<skill>/assets/            Templates/schemas
-registry.json                       Machine-readable catalog
-scripts/validate.py                 Repository validator
-scripts/search.py                   Human/debug catalog search
-docs/                               Architecture, routing, catalog, compositions
-examples/                           Semantic journey + project profile examples
+  .claude-plugin/plugin.json
+  skills/
+    shop/SKILL.md
+    find/SKILL.md
+    apply/SKILL.md
+    catalog/SKILL.md
+  catalog.json
+  scripts/recommend.py
+  library/playbooks/
+    caveman/SKILL.md
+    qa-explorer/SKILL.md
+    load-test/SKILL.md
+    ... 154 more
+docs/
+scripts/validate.py
+registry.json
 ```
 
-## Search the catalog locally
-
-```bash
-python3 scripts/search.py "production multi tenant payments load test"
-```
-
-For debugging the skill router itself:
-
-```bash
-python3 plugins/skillshop/skills/skill-router/scripts/recommend.py \
-  "prepare our multi-tenant payment app for production and load test checkout"
-```
-
-The lexical helpers are intentionally simple and deterministic. The host model should route semantically from the skill metadata.
-
-## Validate
-
-No runtime dependencies are required for the repository validator:
-
-```bash
-python3 scripts/validate.py
-```
-
-CI runs the same checks on every push and pull request.
+The `library/playbooks/` directory deliberately is **not** named `skills/`. Claude Code therefore does not register those playbooks as top-level plugin skills.
 
 ## Design rules
 
-A SkillShop skill should encode **repeatable expert judgment**. It should tell an agent what evidence to gather, what decisions to make, what traps to avoid, and what counts as done.
+1. Route from the actual task and project, not from tool availability.
+2. Prefer 1-3 playbooks for focused work and 3-5 for broad reviews.
+3. Load complementary perspectives, not duplicate checklists.
+4. A playbook is guidance, not permission.
+5. Preserve project-specific constraints and user intent.
+6. Verify before making completion claims.
+7. Keep the router cheap; spend context only on specialists that matter.
 
-Good:
+## Validate
 
-> Reproduce an intermittent bug, minimize the trigger, preserve evidence, identify root cause, add a regression test, and verify the fix under the original trigger.
+```bash
+python3 scripts/validate.py
+python3 plugins/skillshop/scripts/recommend.py \
+  --query "multi-tenant payment app production load test" \
+  --top 8
+```
 
-Bad:
+CI validates the core plugin surface, the full playbook library, manifests, and router smoke tests.
 
-> Act as an expert debugger and fix bugs carefully.
+## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/QUALITY-BAR.md](docs/QUALITY-BAR.md).
+New playbooks belong under:
 
-## Standards and provenance
+```text
+plugins/skillshop/library/playbooks/<name>/SKILL.md
+```
 
-Skills follow the open Agent Skills `SKILL.md` format and progressive-disclosure model. Public skill collections and workflow patterns were researched for coverage and structure, but the skill text in this repository is original wording unless a future contribution explicitly records third-party provenance and licensing.
+Add their metadata to `registry.json` and `plugins/skillshop/catalog.json`. Do not add every new playbook under the plugin's `skills/` directory; that directory is reserved for the tiny routing surface.
 
-See [docs/SOURCES.md](docs/SOURCES.md).
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`docs/SKILL-AUTHORING.md`](docs/SKILL-AUTHORING.md).
 
 ## License
 

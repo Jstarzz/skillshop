@@ -17,7 +17,14 @@ jobs:
           python-version: '3.13'
       - name: Validate SkillShop
         run: python3 scripts/validate.py
-      - name: Smoke-test catalog search
+      - name: Smoke-test public catalog search
         run: python3 scripts/search.py "multi tenant payment load test" --top 5
-      - name: Smoke-test router helper
-        run: python3 plugins/skillshop/skills/skill-router/scripts/recommend.py "production multi tenant payment load test" --top 5
+      - name: Smoke-test low-context router
+        run: python3 plugins/skillshop/scripts/recommend.py --query "production multi tenant payment load test" --project . --top 8 --json
+      - name: Assert router finds critical specialists
+        run: |
+          python3 plugins/skillshop/scripts/recommend.py --query "production multi tenant payment load test" --top 12 --names-only > /tmp/ranked.txt
+          grep -qx 'load-test' /tmp/ranked.txt
+          grep -qx 'payment-integrity' /tmp/ranked.txt
+          grep -qx 'multi-tenant-review' /tmp/ranked.txt
+          grep -qx 'production-readiness' /tmp/ranked.txt

@@ -1,9 +1,11 @@
 {
   "name": "skillshop",
-  "version": "0.1.0",
-  "description": "Composable software-engineering Agent Skills covering architecture, QA, performance, reliability, security, frontend, backend, delivery and meta-routing.",
+  "version": "0.2.0",
+  "description": "Low-context engineering playbook marketplace: one automatic router shops a 157-playbook library and loads only relevant expert workflows.",
   "author": {
     "name": "SkillShop maintainers"
   },
+  "homepage": "https://github.com/Jstarzz/skillshop",
+  "repository": "https://github.com/Jstarzz/skillshop",
   "license": "MIT"
 }

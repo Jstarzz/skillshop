@@ -1,15 +1,15 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "skillshop",
-  "description": "A large composable engineering skill toolbox for software teams and coding agents.",
+  "description": "A low-context engineering playbook marketplace for coding agents.",
   "owner": {
     "name": "SkillShop maintainers"
   },
   "plugins": [
     {
       "name": "skillshop",
-      "description": "Composable software-engineering Agent Skills covering architecture, QA, performance, reliability, security, frontend, backend, delivery and meta-routing.",
-      "version": "0.1.0",
+      "description": "One lightweight router over 157 on-demand engineering playbooks for architecture, QA, performance, reliability, security, frontend, backend and delivery.",
+      "version": "0.2.0",
       "author": {
         "name": "SkillShop maintainers"
       },
@@ -26,7 +26,9 @@
         "reliability",
         "ux",
         "backend",
-        "frontend"
+        "frontend",
+        "playbooks",
+        "router"
       ]
     }
   ]
