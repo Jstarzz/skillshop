@@ -1,0 +1,23 @@
+name: Validate skills
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Validate SkillShop
+        run: python3 scripts/validate.py
+      - name: Smoke-test catalog search
+        run: python3 scripts/search.py "multi tenant payment load test" --top 5
+      - name: Smoke-test router helper
+        run: python3 plugins/skillshop/skills/skill-router/scripts/recommend.py "production multi tenant payment load test" --top 5
