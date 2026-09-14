@@ -48,8 +48,12 @@ for name in ("find", "apply", "catalog"):
         errors.append(f"{name} must remain user-only to avoid context cost")
 
 shop = registered / "shop" / "SKILL.md"
-if shop.exists() and "disable-model-invocation: true" in shop.read_text(encoding="utf-8"):
-    errors.append("shop must remain model-invocable")
+if shop.exists():
+    shop_text = shop.read_text(encoding="utf-8")
+    if "disable-model-invocation: true" in shop_text:
+        errors.append("shop must remain model-invocable")
+    if "when_to_use:" not in shop_text:
+        errors.append("shop must define when_to_use for reliable routing")
 
 registry = json.loads((root / "registry.json").read_text(encoding="utf-8"))
 reg_names = sorted(x["name"] for x in registry["skills"])
@@ -79,10 +83,19 @@ market = json.loads((root / ".claude-plugin" / "marketplace.json").read_text(enc
 entry = market.get("plugins", [{}])[0]
 if plugin.get("name") != "skillshop":
     errors.append("plugin manifest name mismatch")
-if plugin.get("version") != "0.2.0" or entry.get("version") != "0.2.0":
-    errors.append("plugin/marketplace version must be 0.2.0")
+if plugin.get("version") != "0.2.1" or entry.get("version") != "0.2.1":
+    errors.append("plugin/marketplace version must be 0.2.1")
 if not (plugin_root / "scripts" / "recommend.py").exists():
     errors.append("missing recommender")
+if not (plugin_root / "scripts" / "route_prompt.py").exists():
+    errors.append("missing prompt routing hook script")
+hooks_path = plugin_root / "hooks" / "hooks.json"
+if not hooks_path.exists():
+    errors.append("missing plugin hooks/hooks.json")
+else:
+    hooks = json.loads(hooks_path.read_text(encoding="utf-8"))
+    if "UserPromptSubmit" not in hooks.get("hooks", {}):
+        errors.append("SkillShop must register a UserPromptSubmit hook")
 
 if errors:
     for e in errors:
@@ -91,4 +104,5 @@ if errors:
 
 print(f"OK: {len(core_names)} registered skills + {len(lib_names)} cold playbooks validated")
 print("model-invocable SkillShop surface: shop only")
+print("deterministic routing hook: UserPromptSubmit")
 print("categories:", ", ".join(sorted({x["category"] for x in registry["skills"]})))
