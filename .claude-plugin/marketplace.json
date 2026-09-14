@@ -8,8 +8,8 @@
   "plugins": [
     {
       "name": "skillshop",
-      "description": "One lightweight router over 157 on-demand engineering playbooks for architecture, QA, performance, reliability, security, frontend, backend and delivery.",
-      "version": "0.2.0",
+      "description": "Deterministic prompt routing into 157 on-demand engineering playbooks for architecture, QA, performance, reliability, security, frontend, backend and delivery.",
+      "version": "0.2.1",
       "author": {
         "name": "SkillShop maintainers"
       },
