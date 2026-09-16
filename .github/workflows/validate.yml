@@ -48,3 +48,5 @@ jobs:
           test ! -s /tmp/chitchat.txt
           printf '%s\n' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'","prompt":"what should I eat tonight"}' | python3 plugins/skillshop/scripts/route_prompt.py > /tmp/nonengineering.txt
           test ! -s /tmp/nonengineering.txt
+          printf '%s\n' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'","prompt":"fruit salad sounds good"}' | python3 plugins/skillshop/scripts/route_prompt.py > /tmp/short-token-trap.txt
+          test ! -s /tmp/short-token-trap.txt
