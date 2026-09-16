@@ -19,8 +19,16 @@ jobs:
         run: python3 scripts/validate.py
       - name: Smoke-test public catalog search
         run: python3 scripts/search.py "multi tenant payment load test" --top 5
-      - name: Smoke-test low-context router
-        run: python3 plugins/skillshop/scripts/recommend.py --query "production multi tenant payment load test" --project . --top 8 --json
+      - name: Smoke-test compact low-context router
+        run: |
+          python3 plugins/skillshop/scripts/recommend.py --query "production multi tenant payment load test" --project . --top 6 --json --compact > /tmp/compact.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('/tmp/compact.json'))
+          assert len(data['results']) <= 6
+          assert all(set(x) <= {'name', 'category', 'score', 'why'} for x in data['results'])
+          assert all('description' not in x and 'triggers' not in x and 'playbook' not in x for x in data['results'])
+          PY
       - name: Assert router finds critical specialists
         run: |
           python3 plugins/skillshop/scripts/recommend.py --query "production multi tenant payment load test" --top 12 --names-only > /tmp/ranked.txt
@@ -28,9 +36,15 @@ jobs:
           grep -qx 'payment-integrity' /tmp/ranked.txt
           grep -qx 'multi-tenant-review' /tmp/ranked.txt
           grep -qx 'production-readiness' /tmp/ranked.txt
-      - name: Assert prompt hook routes engineering work
+      - name: Assert frontend resource intents route deliberately
+        run: |
+          python3 plugins/skillshop/scripts/recommend.py --query "use ThreeUI for a WebGL landing page hero" --top 6 --names-only > /tmp/frontend-ranked.txt
+          grep -qx 'frontend-slop-obliterator' /tmp/frontend-ranked.txt
+      - name: Assert prompt hook routes intent, not merely cwd
         run: |
           printf '%s\n' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'","prompt":"Review this project for production readiness"}' | python3 plugins/skillshop/scripts/route_prompt.py > /tmp/hook.json
           grep -q 'skillshop:shop' /tmp/hook.json
           printf '%s\n' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'","prompt":"thanks"}' | python3 plugins/skillshop/scripts/route_prompt.py > /tmp/chitchat.txt
           test ! -s /tmp/chitchat.txt
+          printf '%s\n' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'","prompt":"what should I eat tonight"}' | python3 plugins/skillshop/scripts/route_prompt.py > /tmp/nonengineering.txt
+          test ! -s /tmp/nonengineering.txt
