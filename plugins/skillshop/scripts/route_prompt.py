@@ -35,20 +35,47 @@ def obvious_chitchat(prompt: str) -> bool:
 
 
 def engineering_signal(prompt: str) -> bool:
-    text = prompt.lower()
-    terms = (
+    """Detect engineering intent without substring traps such as `ui` in `fruit`."""
+    text = re.sub(r"\s+", " ", prompt.lower())
+    phrases = (
+        "load test", "github actions", "pull request", "mobile app", "design this system",
+        "design system", "three.js", "react native", "code review", "production readiness",
+    )
+    if any(phrase in text for phrase in phrases):
+        return True
+
+    tokens = set(re.findall(r"[a-z0-9][a-z0-9.+#-]*", text))
+    terms = {
         "code", "repo", "repository", "project", "bug", "fix", "implement", "feature",
         "refactor", "review", "production", "deploy", "release", "api", "endpoint",
         "database", "sql", "migration", "schema", "backend", "frontend", "ui", "ux",
         "test", "qa", "playwright", "security", "auth", "payment", "performance",
-        "load test", "benchmark", "latency", "throughput", "memory", "cpu", "docker",
-        "kubernetes", "server", "infra", "ci", "github actions", "typescript", "javascript",
-        "python", "php", "react", "astro", "go ", "rust", "c#", ".net", "java",
-        "architecture", "design this system", "debug", "error", "exception", "build",
-        "dependency", "package", "npm", "pnpm", "git", "branch", "pull request", "pr ",
-        "mobile app", "android", "ios", "nfc", "webhook", "cache", "redis", "queue",
+        "benchmark", "latency", "throughput", "memory", "cpu", "docker", "kubernetes",
+        "server", "infra", "ci", "typescript", "javascript", "python", "php", "react",
+        "astro", "go", "rust", "c#", ".net", "dotnet", "java", "architecture", "debug",
+        "error", "exception", "build", "dependency", "package", "npm", "pnpm", "git",
+        "branch", "pr", "android", "ios", "nfc", "webhook", "cache", "redis", "queue",
+        "component", "webgl", "threejs", "threeui",
+    }
+    return bool(tokens & terms)
+
+
+def project_action_signal(prompt: str) -> bool:
+    """Catch implicit repo edits without treating the current directory as user intent."""
+    text = re.sub(r"\s+", " ", prompt.strip().lower())
+    actions = (
+        "add", "change", "update", "remove", "delete", "rename", "create", "implement",
+        "fix", "debug", "refactor", "optimize", "review", "audit", "inspect", "trace",
+        "test", "verify", "benchmark", "profile", "ship", "deploy", "build", "wire", "connect",
     )
-    return any(term in text for term in terms)
+    targets = (
+        "this", "that", "it", "file", "function", "class", "component", "page", "screen",
+        "route", "endpoint", "service", "server", "client", "app", "repo", "project", "code",
+        "config", "workflow", "script", "package", "dependency", "database", "schema",
+    )
+    return any(re.search(rf"\b{re.escape(action)}\b", text) for action in actions) and any(
+        re.search(rf"\b{re.escape(target)}\b", text) for target in targets
+    )
 
 
 def main() -> None:
@@ -62,15 +89,13 @@ def main() -> None:
         return
 
     cwd = str(data.get("cwd") or os.getcwd())
-    if not (engineering_signal(prompt) or looks_like_project(cwd)):
+    should_route = engineering_signal(prompt) or (looks_like_project(cwd) and project_action_signal(prompt))
+    if not should_route:
         return
 
     context = (
-        "SkillShop routing policy: this prompt is being handled in an engineering context. "
-        "If the task is substantive software-engineering work, invoke the `skillshop:shop` skill "
-        "before analysis or execution so it can select and load the smallest useful set of playbooks. "
-        "Do not skip SkillShop merely because you can answer the task directly. "
-        "If the prompt is genuinely trivial or non-engineering, ignore this reminder."
+        "SkillShop: substantive engineering intent detected. Invoke `skillshop:shop` before the work "
+        "and load only the smallest useful playbook set. Ignore this if the turn is actually trivial."
     )
     print(json.dumps({
         "hookSpecificOutput": {

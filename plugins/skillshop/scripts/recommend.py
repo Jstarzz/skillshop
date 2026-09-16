@@ -24,9 +24,12 @@ ALIASES = {
     "qa": {"qa","test","testing","regression","exploratory","quality"},
     "test": {"test","testing","qa","regression","verification"},
     "testing": {"test","testing","qa","regression","verification"},
-    "ui": {"ui","ux","frontend","visual","responsive","accessibility"},
-    "ux": {"ux","ui","frontend","usability","mobile","accessibility"},
-    "frontend": {"frontend","ui","ux","browser","responsive","accessibility"},
+    "ui": {"ui","ux","frontend","visual","responsive","accessibility","design"},
+    "ux": {"ux","ui","frontend","usability","mobile","accessibility","design"},
+    "frontend": {"frontend","ui","ux","browser","responsive","accessibility","design"},
+    "design": {"design","ui","ux","frontend","visual","layout","typography"},
+    "threeui": {"threeui","three","webgl","shader","3d","immersive"},
+    "webgl": {"webgl","three","threeui","shader","3d","immersive"},
     "backend": {"backend","api","database","queue","worker","service"},
     "db": {"database","sql","postgres","mysql","query","migration","transaction"},
     "database": {"database","sql","postgres","mysql","query","migration","transaction"},
@@ -76,11 +79,20 @@ BOOSTS = {
     "tenant": {"multi-tenant-review": 10, "authorization-review": 5},
     "simplify": {"caveman": 12, "dependency-hater": 5, "modularity-review": 3},
     "simple": {"caveman": 10, "dependency-hater": 4},
-    "ux": {"ux-feasibility": 8, "grandma": 4, "responsive-review": 3},
+    "ux": {"ux-feasibility": 8, "frontend-slop-obliterator": 5, "grandma": 4, "responsive-review": 3},
+    "frontend design": {"frontend-slop-obliterator": 14, "ux-feasibility": 5, "responsive-review": 2},
+    "ui design": {"frontend-slop-obliterator": 12, "ux-feasibility": 4},
+    "landing page": {"frontend-slop-obliterator": 12, "responsive-review": 3},
+    "design system": {"frontend-slop-obliterator": 9, "ux-feasibility": 5},
+    "threeui": {"frontend-slop-obliterator": 15, "low-end-device": 4, "responsive-review": 3},
+    "webgl": {"frontend-slop-obliterator": 12, "low-end-device": 5, "responsive-review": 3},
+    "three.js": {"frontend-slop-obliterator": 12, "low-end-device": 5},
+    "3d ui": {"frontend-slop-obliterator": 12, "low-end-device": 5},
     "qa": {"qa-orchestrator": 9, "qa-explorer": 7, "test-architect": 5},
     "bug": {"bug-reproducer": 8, "systematic-debugging": 7, "fix-bug": 6},
     "debug": {"systematic-debugging": 9, "bug-reproducer": 6, "2am-debugger": 4},
 }
+
 
 def tokenize(text: str, expand_aliases: bool = False) -> list[str]:
     toks = re.findall(r"[a-z0-9][a-z0-9+.#/-]*", text.lower())
@@ -92,6 +104,7 @@ def tokenize(text: str, expand_aliases: bool = False) -> list[str]:
                 if expand_aliases:
                     out.extend(sorted(ALIASES.get(part, ())))
     return out
+
 
 def project_signals(project: Path | None) -> tuple[set[str], list[str]]:
     if not project or not project.exists():
@@ -124,6 +137,7 @@ def project_signals(project: Path | None) -> tuple[set[str], list[str]]:
     if any(x in names for x in ("k8s", "kubernetes", "helm")):
         signals.update({"kubernetes","deployment"})
     return signals, evidence[:8]
+
 
 def score(entry: dict, query_tokens: Counter[str], raw_query: str, psignals: set[str]) -> tuple[float, list[str]]:
     name = entry.get("name", "")
@@ -168,6 +182,16 @@ def score(entry: dict, query_tokens: Counter[str], raw_query: str, psignals: set
         value += 0.2
     return value, reasons
 
+
+def compact_result(item: dict) -> dict:
+    return {
+        "name": item["name"],
+        "category": item.get("category"),
+        "score": item["score"],
+        "why": item.get("why", [])[:2],
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Rank SkillShop playbooks for an engineering task.")
     ap.add_argument("query", nargs="*", help="Task or problem to route")
@@ -176,6 +200,7 @@ def main() -> int:
     ap.add_argument("--top", type=int, default=8)
     ap.add_argument("--category")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--compact", action="store_true", help="With --json, omit descriptions/triggers/paths and return only routing evidence.")
     ap.add_argument("--names-only", action="store_true")
     args = ap.parse_args()
     raw_query = args.query_opt or " ".join(args.query)
@@ -207,12 +232,15 @@ def main() -> int:
         print("\n".join(x["name"] for x in ranked))
         return 0
     if args.json:
-        print(json.dumps({
+        results = [compact_result(item) for item in ranked] if args.compact else ranked
+        payload = {
             "query": raw_query,
             "project_signals": sorted(psignals),
-            "project_evidence": evidence,
-            "results": ranked,
-        }, indent=2))
+            "results": results,
+        }
+        if not args.compact:
+            payload["project_evidence"] = evidence
+        print(json.dumps(payload, indent=None if args.compact else 2, separators=(",", ":") if args.compact else None))
         return 0
     if evidence:
         print("project:", ", ".join(evidence))
@@ -221,6 +249,7 @@ def main() -> int:
         print(f"{i:>2}. {x['name']:<30} {x['score']:>6.2f}  [{x['category']}]  {why}")
         print(f"    {x['description']}")
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
