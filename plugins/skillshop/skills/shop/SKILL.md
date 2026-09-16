@@ -1,71 +1,77 @@
 ---
 name: shop
-description: "Route substantive software-engineering work to the smallest useful set of specialized SkillShop playbooks before analysis or execution. Use for architecture, implementation, debugging, QA, performance, security, reliability, frontend, backend, delivery, migrations, production readiness, mobile, payments, or other engineering work where expert workflow guidance can improve the result."
-when_to_use: "Invoke before substantive engineering work, including project reviews and production-readiness checks. Do not skip routing merely because the task looks solvable without a specialist playbook."
+description: "Route substantive software-engineering work to the smallest useful set of specialized SkillShop playbooks before analysis or execution. Use for architecture, implementation, debugging, QA, performance, security, reliability, frontend, backend, delivery, migrations, production readiness, mobile, payments, or other engineering work where expert workflow guidance can materially change the result."
+when_to_use: "Invoke for substantive engineering work after the deterministic hook detects engineering intent. Do not invoke merely because the current working directory is a project or because a trivial question mentions code."
 allowed-tools: "Bash(python3 ${CLAUDE_PLUGIN_ROOT}/scripts/recommend.py *) Read Glob Grep"
 ---
 
 # SkillShop router
 
-Act as the dispatcher, not as another generic engineering checklist.
+Be a dispatcher, not another generic checklist.
 
-## Route first
+## Route with a compact shortlist
 
-When this skill is invoked for substantive engineering work, route before doing the substantive analysis or implementation.
-
-Derive a short routing query from the user's actual task and the repository context. Then run:
+Derive one concrete routing query from the user's task and lightweight repository context, then run:
 
 ```bash
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/recommend.py" \
   --query "<task in concrete engineering terms>" \
   --project "${CLAUDE_PROJECT_DIR}" \
-  --top 10 \
-  --json
+  --top 6 \
+  --json \
+  --compact
 ```
 
-If the task is genuinely trivial or non-engineering, report that no specialist playbook is needed and return to the request.
+The compact result intentionally omits playbook descriptions, trigger arrays, and paths. Do not rerun in verbose mode unless the shortlist is genuinely ambiguous.
 
-## Choose a small composition
+If the turn is trivial or non-engineering, report that no specialist is needed and return to the request.
 
-From the candidates, select only the playbooks that materially change how the task should be done.
+## Choose less
 
-Default:
-- 1–3 playbooks for a focused task.
-- 3–5 for a broad release/review.
-- More than 5 only when the task genuinely spans independent risk domains.
+Load only playbooks that materially change the work:
 
-Prefer complementary roles over duplicates. Example: `load-test` + `generator-sanity` + `capacity-plan` is useful; five generic review playbooks are not.
+- focused task: **1-2** playbooks by default;
+- broad release/review: **2-4**;
+- more than 4 only when the request truly spans independent risk domains.
 
-Do not blindly take the highest scores. Use project facts, user intent, risk, and scope.
+Prefer complementary jobs over overlapping reviewers. Do not load a generic helper when the primary playbook already contains the needed procedure.
+
+Examples:
+
+```text
+payment webhook bug
+  -> payment-integrity + systematic-debugging
+
+frontend redesign
+  -> frontend-slop-obliterator
+  -> add responsive-review only when breakpoint behavior is actually part of the risk
+
+load-test release gate
+  -> load-test + generator-sanity + capacity-plan
+```
 
 ## Load on demand
 
-For each selected playbook, read:
+For each selected playbook, read only:
 
 `${CLAUDE_PLUGIN_ROOT}/library/playbooks/<name>/SKILL.md`
 
-Read only selected playbooks. Supporting files under that playbook directory may be read only when the playbook points to them or they are clearly needed.
+Read supporting files only when that playbook points to them or they are clearly required. Never open the whole catalog/library for context.
 
-Treat each loaded playbook as expert procedural guidance. Reconcile conflicts instead of stacking contradictory instructions. User requirements and project-specific constraints win.
+Reconcile conflicts rather than stacking instructions. User requirements and project facts win.
 
 ## Routing receipt
 
-After routing and loading the selected playbooks, always emit exactly one compact routing receipt before the substantive response:
+After loading selected playbooks, emit exactly one compact line before substantive work:
 
 `SkillShop → <playbook>, <playbook>`
 
-List only playbooks whose `SKILL.md` was actually read in this turn, in the order they were loaded. If none were loaded, emit:
+List only playbooks whose `SKILL.md` was actually read this turn. If none were loaded:
 
 `SkillShop → no specialist needed`
 
-Keep the receipt to one line. Do not include scores, candidate lists, reasoning, file paths, or router debug output unless the user explicitly asks for routing details.
+Do not include scores, candidate lists, file paths, or router debug output unless the user asks.
 
-Never claim a playbook was selected or used unless its `SKILL.md` was actually read.
+When the task changes materially, route again. When it merely continues the same task, reuse the already-loaded specialist instead of paying the routing cost again.
 
-If the user later asks whether SkillShop was used, answer from the actual routing/load history in the conversation rather than inferring from the final answer.
-
-## Safety and execution
-
-A playbook is guidance, not permission. Preserve existing tool permissions, authorization boundaries, production safeguards, and confirmation requirements.
-
-When the task changes materially, route again rather than assuming the old composition still fits.
+A playbook is guidance, not permission: preserve tool permissions, authorization boundaries, production safeguards, and confirmation requirements.
