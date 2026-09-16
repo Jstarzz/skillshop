@@ -35,21 +35,29 @@ def obvious_chitchat(prompt: str) -> bool:
 
 
 def engineering_signal(prompt: str) -> bool:
-    text = prompt.lower()
-    terms = (
+    """Detect engineering intent without substring traps such as `ui` in `fruit`."""
+    text = re.sub(r"\s+", " ", prompt.lower())
+    phrases = (
+        "load test", "github actions", "pull request", "mobile app", "design this system",
+        "design system", "three.js", "react native", "code review", "production readiness",
+    )
+    if any(phrase in text for phrase in phrases):
+        return True
+
+    tokens = set(re.findall(r"[a-z0-9][a-z0-9.+#-]*", text))
+    terms = {
         "code", "repo", "repository", "project", "bug", "fix", "implement", "feature",
         "refactor", "review", "production", "deploy", "release", "api", "endpoint",
         "database", "sql", "migration", "schema", "backend", "frontend", "ui", "ux",
         "test", "qa", "playwright", "security", "auth", "payment", "performance",
-        "load test", "benchmark", "latency", "throughput", "memory", "cpu", "docker",
-        "kubernetes", "server", "infra", "ci", "github actions", "typescript", "javascript",
-        "python", "php", "react", "astro", "go ", "rust", "c#", ".net", "java",
-        "architecture", "design this system", "debug", "error", "exception", "build",
-        "dependency", "package", "npm", "pnpm", "git", "branch", "pull request", "pr ",
-        "mobile app", "android", "ios", "nfc", "webhook", "cache", "redis", "queue",
-        "component", "design system", "webgl", "three.js", "threejs", "threeui",
-    )
-    return any(term in text for term in terms)
+        "benchmark", "latency", "throughput", "memory", "cpu", "docker", "kubernetes",
+        "server", "infra", "ci", "typescript", "javascript", "python", "php", "react",
+        "astro", "go", "rust", "c#", ".net", "dotnet", "java", "architecture", "debug",
+        "error", "exception", "build", "dependency", "package", "npm", "pnpm", "git",
+        "branch", "pr", "android", "ios", "nfc", "webhook", "cache", "redis", "queue",
+        "component", "webgl", "threejs", "threeui",
+    }
+    return bool(tokens & terms)
 
 
 def project_action_signal(prompt: str) -> bool:
